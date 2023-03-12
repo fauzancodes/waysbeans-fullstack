@@ -1,0 +1,34 @@
+[
+  {
+    "id":1,
+    "name":"NICARAGUA Beans",
+    "stock":46,
+    "price":220000,
+    "description":"This is NICARAGUA Beans. Nullam a sem felis. Integer imperdiet, est vel feugiat tincidunt, sapien quam dictum urna, vitae molestie sem urna in sem. Sed sit amet tortor vel tellus sollicitudin pharetra. Ut tempor erat id enim tincidunt ultricies. Pellentesque rhoncus aliquam pulvinar. Vivamus vestibulum arcu leo, quis ultricies odio euismod a. Nullam tincidunt tincidunt mi a consequat. Proin varius tristique lectus, nec consequat leo ultrices quis. Vivamus nec viverra quam, vitae lobortis enim.",
+    "photo":"/images/product-nicaragua.webp"
+  },
+  {
+    "id":2,
+    "name":"GUETEMALA Beans",
+    "stock":23,
+    "price":230000,
+    "description":"This is GUETEMALA Beans. Morbi sodales nulla ipsum, at condimentum elit placerat non. Aliquam erat volutpat. Maecenas vel lacus ut leo volutpat malesuada. Phasellus dui nulla, tempor at cursus eget, venenatis et orci. Maecenas pellentesque risus nisl, vel gravida velit maximus id. Aliquam vehicula diam at viverra condimentum. Morbi tincidunt mi a sapien commodo imperdiet. Sed quis pulvinar diam. Suspendisse tempor vel justo vitae feugiat. Mauris eget tincidunt lorem, ac pellentesque leo. Suspendisse orci magna, luctus aliquam odio ac, egestas convallis neque. Mauris non luctus ligula.",
+    "photo":"/images/product-guetemala.webp"
+  },
+  {
+    "id":3,
+    "name":"ETHIOPIA Beans",
+    "stock":11,
+    "price":450000,
+    "description":"This is ETHIOPIA Beans. Donec sit amet porttitor libero, sit amet convallis neque. Nam egestas faucibus imperdiet. Suspendisse non pellentesque justo. Quisque eros lectus, sollicitudin ac sem id, eleifend malesuada nulla. Suspendisse placerat diam non ultricies auctor. Nulla facilisi. Mauris dapibus sem sit amet nisi elementum, et vehicula nisi tincidunt. Donec gravida finibus quam, non hendrerit mi dictum sit amet. Sed massa ex, porttitor auctor dolor accumsan, ultricies pulvinar mauris.",
+    "photo":"/images/product-ethiopia.webp"
+  },
+  {
+    "id":4,
+    "name":"RWANDA Beans",
+    "stock":120,
+    "price":150000,
+    "description":"This is RWANDA Beans. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut feugiat ex. Proin auctor interdum ex id aliquam. Etiam vitae magna dui. Ut mollis varius velit, ut posuere nunc venenatis id. Ut quis imperdiet enim. Nam magna diam, vulputate lacinia lacinia vel, ornare scelerisque ante. Quisque neque sem, finibus non neque sed, pellentesque commodo justo. Proin in maximus dolor. Sed at massa sit amet elit ultrices scelerisque. Aliquam ultricies arcu eros, eget varius erat aliquam at. Nunc ornare diam at augue interdum laoreet.",
+    "photo":"/images/product-rwanda.webp"
+  }
+]
