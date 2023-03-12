@@ -41,16 +41,13 @@ export default function ProductDetails(props) {
                     <td>{transaction.total_quantity}</td>
                     <td>{transaction.total_price}</td>
                     {
-                      transaction.status === "Waiting Approval" ? <td style={{ color:"#FF9900" }}>{transaction.status}</td> : null
+                      transaction.status === "pending" ? <td style={{ color:"#FF9900" }}>{transaction.status}</td> : null
                     }
                     {
-                      transaction.status === "Success" ? <td style={{ color:"#78A85A" }}>{transaction.status}</td> : null
+                      transaction.status === "success" ? <td style={{ color:"#78A85A" }}>{transaction.status}</td> : null
                     }
                     {
-                      transaction.status === "Cancel" ? <td style={{ color:"#E83939" }}>{transaction.status}</td> : null
-                    }
-                    {
-                      transaction.status === "Complete" ? <td style={{ color:"#613D2B" }}>{transaction.status}</td> : null
+                      transaction.status === "failed" ? <td style={{ color:"#E83939" }}>{transaction.status}</td> : null
                     }
                   </tr>
                 ))
