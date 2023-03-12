@@ -83,11 +83,6 @@ export default function Profile(props) {
                     </Col>
                     <Col xs={12} lg={8} className="d-flex flex-wrap justify-content-center align-items-center product-transaction">
                       <div className="w-100">
-                        {/* {
-                          item.products?.map((product) => (
-                            <h3 className="product-title font-size-16px my-0">{product?.product_name}</h3>
-                          ))
-                        } */}
                         <p className="custom-text-primary font-size-14px"><strong className="custom-text-primary">{`${new Date(item.date).getDate()} ${months[new Date(item.date).getMonth()]} ${new Date(item.date).getFullYear()}`}</strong></p>
                         <p className="product-details font-size-14px mb-0">Price : Rp{item.total_price}</p>
                         <p className="product-details font-size-14px mb-0">Qty : {item.total_quantity}</p>
@@ -98,7 +93,7 @@ export default function Profile(props) {
                       <img src="/images/icon-logo.webp" alt="Logo" style={{ width:"6rem" }}/>
                       <img src="/images/qr-code.webp" alt="QR Code" className="my-3" style={{ width:"4rem" }}/>
                       {
-                        item.status === "Waiting Approval" ? (
+                        item.status === "Pending" ? (
                           <div className="font-size-14px text-center rounded py-1" style={{ width:"100%",color:"#FF9900",backgroundColor:"rgba(255,153,0,0.125)" }}>{item.status}</div>
                         ) : null
                       }
@@ -108,8 +103,8 @@ export default function Profile(props) {
                         ) : null
                       }
                       {
-                        item.status === "Complete" ? (
-                          <div className="font-size-14px text-center rounded py-1" style={{ width:"100%",color:"#FFFFFF",backgroundColor:"#613D2B" }}>{item.status}</div>
+                        item.status === "Failed" ? (
+                          <div className="font-size-14px text-center rounded py-1" style={{ width:"100%",color:"#E83939",backgroundColor:"#F5AFAF" }}>{item.status}</div>
                         ) : null
                       }
                     </Col>
