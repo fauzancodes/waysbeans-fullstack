@@ -228,7 +228,7 @@ func SendMail(status string, transaction models.Transaction) {
   if status != transaction.Status && (status == "success") {
     var CONFIG_SMTP_HOST = "smtp.gmail.com"
     var CONFIG_SMTP_PORT = 587
-    var CONFIG_SENDER_NAME = transaction.Name + " " + "<" + transaction.Email + ">"
+    var CONFIG_SENDER_NAME = "Waysbeans waysbeans.admin@gmail.com"
     var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
     var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
 
@@ -237,7 +237,7 @@ func SendMail(status string, transaction models.Transaction) {
 
     mailer := gomail.NewMessage()
     mailer.SetHeader("From", CONFIG_SENDER_NAME)
-    mailer.SetHeader("To", CONFIG_AUTH_EMAIL)
+    mailer.SetHeader("To", "mfauzan.murtadho@gmail.com")
     mailer.SetHeader("Subject", "Transaction Status")
     mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
     <html lang="en">
