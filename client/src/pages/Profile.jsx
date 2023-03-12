@@ -6,6 +6,7 @@ import { API } from '../config/api';
 export default function Profile(props) {
   document.title = `My Profile | WaysBeans`;
   const navigate = useNavigate();
+  console.log(props.Transactions)
 
   async function UpdateProfile(id) {
     try {

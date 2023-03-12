@@ -114,16 +114,6 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		productTransaction = append(productTransaction, cartNew)
 	}
 
-	encountered := map[int]bool{}
-	productTransactionUnique := []models.ProductTransaction{}
-
-	for _, product := range productTransaction {
-		if encountered[product.ProductID] == false {
-			encountered[product.ProductID] = true
-			productTransactionUnique = append(productTransactionUnique, product)
-		}
-	}
-
 	var transactionIsMatch = false
 	var transactionId int
 	for !transactionIsMatch {
@@ -142,7 +132,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		Email:              request.Email,
 		Phone:              request.Phone,
 		Address:            request.Address,
-		ProductTransaction: productTransactionUnique,
+		ProductTransaction: productTransaction,
 		TotalQuantity:      totalQuantity,
 		TotalPrice:         totalPrice,
 		Status:             "pending",

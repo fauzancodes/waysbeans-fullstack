@@ -9,6 +9,7 @@ import PaymentModal from '../components/PaymentModal';
 export default function ProductDetails(props) {
   document.title = "My Cart | WaysBeans";
   const navigate = useNavigate();
+  console.log(transaction)
 
   useEffect(() => {
     const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
@@ -81,7 +82,6 @@ export default function ProductDetails(props) {
               const newProduct = {product_name: props.Products.find(product => product.id === cart.product_id).name, product_photo: props.Products.find(product => product.id === cart.product_id).photo};
               paidProducts.push(newProduct);
             }
-            console.log(paidProducts);
             props.SetUserCarts([]);
             const newTransactionData = {
               id: props.Transactions.length + 1,
