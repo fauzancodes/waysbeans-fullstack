@@ -81,6 +81,7 @@ export default function ProductDetails(props) {
               const newProduct = {product_name: props.Products.find(product => product.id === cart.product_id).name, product_photo: props.Products.find(product => product.id === cart.product_id).photo};
               paidProducts.push(newProduct);
             }
+            console.log(paidProducts);
             props.SetUserCarts([]);
             const newTransactionData = {
               id: props.Transactions.length + 1,
