@@ -63,11 +63,12 @@ export default function ProductDetails(props) {
       const formDataJSON = JSON.stringify(formDataObject);
       try {
         const response = await API.post('/transaction', formDataJSON, config);
-        
+        console.log(response);
         const token = response.data.data.token;
         
         window.snap.pay(token, {
           onSuccess: function (result) {
+            console.log(result);
             props.SetUserCarts([]);
             for (let cart of props.UserCarts) {
               const updatedProducts = props.Products.map((product) => {
@@ -93,7 +94,7 @@ export default function ProductDetails(props) {
               products: paidProducts,
               total_quantity: formPayment.total_quantity,
               total_price: formPayment.total_price,
-              status: "Pending",
+              status: "Success",
               user: {id:props.User.id},
             }
             props.SetTransactions([...props.Transactions, newTransactionData]);
