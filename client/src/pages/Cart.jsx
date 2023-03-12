@@ -125,7 +125,7 @@ export default function ProductDetails(props) {
       }));
 
       props.showModalSuccessTransaction();
-      navigate("/profile");
+      // navigate("/profile");
     }
   });
   
