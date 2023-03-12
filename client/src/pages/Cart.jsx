@@ -76,12 +76,12 @@ export default function ProductDetails(props) {
               });
               props.SetProducts(updatedProducts);
             }
-            props.SetUserCarts([]);
             const paidProducts = [];
             for (let cart of props.UserCarts.filter(cart => cart.user_id === props.User.id)) {
               const newProduct = {product_name: props.Products.find(product => product.id === cart.product_id).name, product_photo: props.Products.find(product => product.id === cart.product_id).photo};
               paidProducts.push(newProduct);
             }
+            props.SetUserCarts([]);
             const newTransactionData = {
               id: props.Transactions.length + 1,
               name: formPayment.name,
