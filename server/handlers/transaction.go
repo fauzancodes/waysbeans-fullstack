@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -16,6 +17,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/midtrans/midtrans-go"
 	"github.com/midtrans/midtrans-go/snap"
+	"gopkg.in/gomail.v2"
 )
 
 type handlerTransaction struct {
@@ -133,7 +135,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		ProductTransaction: productTransaction,
 		TotalQuantity:      totalQuantity,
 		TotalPrice:         totalPrice,
-		Status:             "Pending",
+		Status:             "pending",
 	}
 
 	dataTransactions, err := h.TransactionRepository.CreateTransaction(transaction)
@@ -218,6 +220,61 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: notificationPayload})
 }
 
+func SendMail(status string, transaction models.Transaction) {
+
+  if status != transaction.Status && (status == "success") {
+    var CONFIG_SMTP_HOST = "smtp.gmail.com"
+    var CONFIG_SMTP_PORT = 587
+    var CONFIG_SENDER_NAME = transaction.Name + " " + transaction.Email
+    var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
+    var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
+
+    var totalQuantity = strconv.Itoa(transaction.TotalQuantity)
+    var totalPrice = strconv.Itoa(transaction.TotalPrice)
+
+    mailer := gomail.NewMessage()
+    mailer.SetHeader("From", CONFIG_SENDER_NAME)
+    mailer.SetHeader("To", CONFIG_AUTH_EMAIL)
+    mailer.SetHeader("Subject", "Transaction Status")
+    mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <style>
+        h1 {
+        color: brown;
+        }
+      </style>
+      </head>
+      <body>
+      <h2>Product payment :</h2>
+      <ul style="list-style-type:none;">
+        <li>Name : %s</li>
+        <li>Total payment: Rp.%s</li>
+        <li>Status : <b>%s</b></li>
+      </ul>
+      </body>
+    </html>`, totalQuantity, totalPrice, status))
+
+    dialer := gomail.NewDialer(
+      CONFIG_SMTP_HOST,
+      CONFIG_SMTP_PORT,
+      CONFIG_AUTH_EMAIL,
+      CONFIG_AUTH_PASSWORD,
+    )
+
+    err := dialer.DialAndSend(mailer)
+    if err != nil {
+      log.Fatal(err.Error())
+    }
+
+    log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
+  }
+}
+
 // func (h *handler) UpdateTransaction(c echo.Context) error {
 // 	id, _ := strconv.Atoi(c.Param("id"))
 
@@ -277,14 +334,15 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 // 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart data updated successfully", Data: convertResponseTransaction(data)})
 // }
 
-func convertResponseTransaction(u models.Transaction) transactionsdto.TransactionResponse {
-	return transactionsdto.TransactionResponse{
-		UserID:        u.UserID,
-		Name:          u.Name,
-		Email:         u.Email,
-		Phone:         u.Phone,
-		Address:       u.Address,
-		TotalQuantity: u.TotalQuantity,
-		TotalPrice:    u.TotalPrice,
-	}
-}
+// func convertResponseTransaction(u models.Transaction) transactionsdto.TransactionResponse {
+// 	return transactionsdto.TransactionResponse{
+// 		UserID:        u.UserID,
+// 		Name:          u.Name,
+// 		Email:         u.Email,
+// 		Phone:         u.Phone,
+// 		Address:       u.Address,
+// 		TotalQuantity: u.TotalQuantity,
+// 		TotalPrice:    u.TotalPrice,
+// 		Status:        u.Status,
+// 	}
+// }
