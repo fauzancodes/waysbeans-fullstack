@@ -46,9 +46,9 @@ func (r *repository) UpdateTransaction(status string, orderId int) (models.Trans
   if status != transaction.Status && status == "Success" {
 		for _, product := range transaction.ProductTransaction {
 			var productData models.Product
-			r.db.First(&product, product.ProductID)
+			r.db.First(&productData, product.ProductID)
 			productData.Stock = productData.Stock - product.OrderQuantity
-			r.db.Save(&product)
+			r.db.Save(&productData)
 		}
   }
 
