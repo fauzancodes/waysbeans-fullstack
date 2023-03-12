@@ -201,13 +201,16 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 
 	fmt.Print("payload: ", notificationPayload)
 
+	transaction, _ := h.TransactionRepository.GetTransaction(order_id)
 	if transactionStatus == "capture" {
 		if fraudStatus == "challenge" {
 			h.TransactionRepository.UpdateTransaction("pending", order_id)
 		} else if fraudStatus == "accept" {
+			SendMail("success", transaction)
 			h.TransactionRepository.UpdateTransaction("success", order_id)
 		}
 	} else if transactionStatus == "settlement" {
+		SendMail("success", transaction)
 		h.TransactionRepository.UpdateTransaction("success", order_id)
 	} else if transactionStatus == "deny" {
 		h.TransactionRepository.UpdateTransaction("failed", order_id)
@@ -225,7 +228,7 @@ func SendMail(status string, transaction models.Transaction) {
   if status != transaction.Status && (status == "success") {
     var CONFIG_SMTP_HOST = "smtp.gmail.com"
     var CONFIG_SMTP_PORT = 587
-    var CONFIG_SENDER_NAME = transaction.Name + " " + transaction.Email
+    var CONFIG_SENDER_NAME = transaction.Name + " " + "<" + transaction.Email + ">"
     var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
     var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
 

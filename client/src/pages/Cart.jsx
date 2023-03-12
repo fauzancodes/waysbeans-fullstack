@@ -63,12 +63,10 @@ export default function ProductDetails(props) {
       const formDataJSON = JSON.stringify(formDataObject);
       try {
         const response = await API.post('/transaction', formDataJSON, config);
-        console.log(response);
         const token = response.data.data.token;
         
         window.snap.pay(token, {
           onSuccess: function (result) {
-            console.log(result);
             for (let cart of props.UserCarts.filter(cart => cart.user_id === props.User.id)) {
               const updatedProducts = props.Products.map((product) => {
                 if (product.id === cart.product_id) {
