@@ -9,7 +9,6 @@ import PaymentModal from '../components/PaymentModal';
 export default function ProductDetails(props) {
   document.title = "My Cart | WaysBeans";
   const navigate = useNavigate();
-  console.log(transaction)
 
   useEffect(() => {
     const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
