@@ -26,7 +26,7 @@ export default function PaymentModal(props) {
               <br/>
               Total: Rp{props.total}
             </Form.Text>
-            <Button variant="primary" type="submit" className="custom-btn-primary w-100 fw-bold font-size-18px mt-2 p-3">Pay</Button>
+            <Button onClick={props.onHide} variant="primary" type="submit" className="custom-btn-primary w-100 fw-bold font-size-18px mt-2 p-3">Pay</Button>
           </Form>
         </Modal.Body>
       </Modal>

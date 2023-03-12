@@ -63,70 +63,69 @@ export default function ProductDetails(props) {
       const formDataJSON = JSON.stringify(formDataObject);
       try {
         const response = await API.post('/transaction', formDataJSON, config);
-
-        props.SetUserCarts([]);
-        for (let cart of props.UserCarts) {
-          const updatedProducts = props.Products.map((product) => {
-            if (product.id === cart.product_id) {
-              return { ...product, stock: product.stock - 1 };
-            }
-            return product;
-          });
-          props.SetProducts(updatedProducts);
-        }
-        const paidProducts = [];
-        for (let cart of props.UserCarts.filter(cart => cart.user_id === props.User.id)) {
-          const newProduct = {product_name: props.Products.find(product => product.id === cart.product_id).name, product_photo: props.Products.find(product => product.id === cart.product_id).photo};
-          paidProducts.push(newProduct);
-        }
-        const newTransactionData = {
-          id: props.Transactions.length + 1,
-          name: formPayment.name,
-          email: formPayment.email,
-          phone: formPayment.phone,
-          address: formPayment.address,
-          date: new Date(),
-          products: paidProducts,
-          total_quantity: formPayment.total_quantity,
-          total_price: formPayment.total_price,
-          status: "Pending",
-          user: {id:props.User.id},
-        }
-        props.SetTransactions([...props.Transactions, newTransactionData]);
         
-        setformPayment((formPayment) => ({
-          ...formPayment,
-          name: props.User.name,
-          email: props.User.email,
-          phone: props.Profiles.find(profile => profile.user_id === props.User.id).phone,
-          address: props.Profiles.find(profile => profile.user_id === props.User.id).address,
-          total_quantity: props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentValue) => accumulator + currentValue.order_quantity, 0),
-          total_price: props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0),
-        }));
-        console.log(response)
         const token = response.data.data.token;
+        
         window.snap.pay(token, {
           onSuccess: function (result) {
-            console.log(result);
+            props.SetUserCarts([]);
+            for (let cart of props.UserCarts) {
+              const updatedProducts = props.Products.map((product) => {
+                if (product.id === cart.product_id) {
+                  return { ...product, stock: product.stock - 1 };
+                }
+                return product;
+              });
+              props.SetProducts(updatedProducts);
+            }
+            const paidProducts = [];
+            for (let cart of props.UserCarts.filter(cart => cart.user_id === props.User.id)) {
+              const newProduct = {product_name: props.Products.find(product => product.id === cart.product_id).name, product_photo: props.Products.find(product => product.id === cart.product_id).photo};
+              paidProducts.push(newProduct);
+            }
+            const newTransactionData = {
+              id: props.Transactions.length + 1,
+              name: formPayment.name,
+              email: formPayment.email,
+              phone: formPayment.phone,
+              address: formPayment.address,
+              date: new Date(),
+              products: paidProducts,
+              total_quantity: formPayment.total_quantity,
+              total_price: formPayment.total_price,
+              status: "Pending",
+              user: {id:props.User.id},
+            }
+            props.SetTransactions([...props.Transactions, newTransactionData]);
+            
+            setformPayment((formPayment) => ({
+              ...formPayment,
+              name: props.User.name,
+              email: props.User.email,
+              phone: props.Profiles.find(profile => profile.user_id === props.User.id).phone,
+              address: props.Profiles.find(profile => profile.user_id === props.User.id).address,
+              total_quantity: props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentValue) => accumulator + currentValue.order_quantity, 0),
+              total_price: props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0),
+            }));
+      
+            props.showModalSuccessTransaction();
+            navigate("/profile");
           },
           onPending: function (result) {
-            console.log(result);
+            return
           },
           onError: function (result) {
-            console.log(result);
+            return
           },
           onClose: function () {
-            alert("you closed the popup without finishing the payment");
+            return
           },
         });
-  
-        props.showModalSuccessTransaction();
-        // navigate("/profile");
+
       }
       catch (error) {
         return
       }
-      
     }
   });
   
