@@ -201,18 +201,18 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 
 	if transactionStatus == "capture" {
 		if fraudStatus == "challenge" {
-			h.TransactionRepository.UpdateTransaction("Pending", order_id)
+			h.TransactionRepository.UpdateTransaction("pending", order_id)
 		} else if fraudStatus == "accept" {
-			h.TransactionRepository.UpdateTransaction("Success", order_id)
+			h.TransactionRepository.UpdateTransaction("success", order_id)
 		}
 	} else if transactionStatus == "settlement" {
-		h.TransactionRepository.UpdateTransaction("Success", order_id)
+		h.TransactionRepository.UpdateTransaction("success", order_id)
 	} else if transactionStatus == "deny" {
-		h.TransactionRepository.UpdateTransaction("Failed", order_id)
+		h.TransactionRepository.UpdateTransaction("failed", order_id)
 	} else if transactionStatus == "cancel" || transactionStatus == "expire" {
-		h.TransactionRepository.UpdateTransaction("Failed", order_id)
+		h.TransactionRepository.UpdateTransaction("failed", order_id)
 	} else if transactionStatus == "pending" {
-		h.TransactionRepository.UpdateTransaction("Pending", order_id)
+		h.TransactionRepository.UpdateTransaction("pending", order_id)
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: notificationPayload})

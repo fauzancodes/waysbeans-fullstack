@@ -94,7 +94,7 @@ export default function ProductDetails(props) {
               products: paidProducts,
               total_quantity: formPayment.total_quantity,
               total_price: formPayment.total_price,
-              status: "Success",
+              status: "success",
               user: {id:props.User.id},
             }
             props.SetTransactions([...props.Transactions, newTransactionData]);

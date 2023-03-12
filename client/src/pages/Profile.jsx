@@ -93,17 +93,17 @@ export default function Profile(props) {
                       <img src="/images/icon-logo.webp" alt="Logo" style={{ width:"6rem" }}/>
                       <img src="/images/qr-code.webp" alt="QR Code" className="my-3" style={{ width:"4rem" }}/>
                       {
-                        item.status === "Pending" ? (
+                        item.status === "pending" ? (
                           <div className="font-size-14px text-center rounded py-1" style={{ width:"100%",color:"#FF9900",backgroundColor:"rgba(255,153,0,0.125)" }}>{item.status}</div>
                         ) : null
                       }
                       {
-                        item.status === "Success" ? (
+                        item.status === "success" ? (
                           <div className="font-size-14px text-center rounded py-1" style={{ width:"100%",color:"#78A85A",backgroundColor:"rgba(120,168,90,0.125)" }}>{item.status}</div>
                         ) : null
                       }
                       {
-                        item.status === "Failed" ? (
+                        item.status === "failed" ? (
                           <div className="font-size-14px text-center rounded py-1" style={{ width:"100%",color:"#E83939",backgroundColor:"#F5AFAF" }}>{item.status}</div>
                         ) : null
                       }
