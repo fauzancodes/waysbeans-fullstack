@@ -21,7 +21,7 @@ export default function ProductDetails(props) {
             await API.patch('/increase-order-quantity/' + foundCart.id);
           }
           catch (error) {
-            console.log("Failed to fetch data from database");
+            return
           }
           const updatedCarts = props.UserCarts.map((cart) => {
             if (cart.user_id === props.User.id && cart.id === foundCart.id) {
@@ -43,7 +43,7 @@ export default function ProductDetails(props) {
             await API.post('/cart/' + Product.id, newCart, config);
           }
           catch (error) {
-            console.log("Failed to fetch data from database");
+            return
           }
           const newCartData = {
             id: props.UserCarts.length + 1,

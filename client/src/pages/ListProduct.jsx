@@ -13,7 +13,7 @@ export default function ProductDetails(props) {
       props.SetProductsList(response.data.data);
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
 
@@ -24,7 +24,7 @@ export default function ProductDetails(props) {
       await API.delete(`/product/${id}`);
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
     props.SetProductsList((products) => {
       return products.filter((item) => item.id !== id);
@@ -48,7 +48,7 @@ export default function ProductDetails(props) {
       });
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
 
     navigate(`/update-product-page/${id}`);

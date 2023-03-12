@@ -22,7 +22,7 @@ export default function Profile(props) {
       });
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
 
     navigate('/update-profile');

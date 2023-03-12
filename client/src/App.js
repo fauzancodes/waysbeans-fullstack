@@ -73,7 +73,7 @@ function App() {
         type: 'AUTH_ERROR',
       });
       setIsLoading(false);
-      console.log("Failed to fetch data from database");
+      return
     }
   };
 
@@ -88,7 +88,7 @@ function App() {
       SetProductsList(response.data.data);
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
   useQuery('usercartsCache', async () => {
@@ -97,7 +97,7 @@ function App() {
       SetUserCarts(response.data.data);
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
   useQuery('userprofilesCache', async () => {
@@ -106,7 +106,7 @@ function App() {
       SetUserProfiles(response.data.data);
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
   useQuery('transactionsCache', async () => {
@@ -115,7 +115,7 @@ function App() {
       SetTransactionsList(response.data.data);
     }
     catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
 
@@ -182,7 +182,7 @@ function App() {
         await API.post('/register', formRegister);
       }
       catch (error) {
-        console.log("Failed to fetch data from database");
+        return
       }
 
       setFormRegister({
@@ -242,7 +242,7 @@ function App() {
         await API.post('/product', formData, config);
       }
       catch (error) {
-        console.log("Failed to fetch data from database");
+        return
       }
   
       setformAddProduct((formAddProduct) => ({
@@ -257,7 +257,7 @@ function App() {
       setmodalSuccessAddProduct(true);
       navigate("/list-product");
     } catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
 
@@ -302,7 +302,7 @@ function App() {
         await API.patch('/product/' + formUpdateProduct.id, formData, config);
       }
       catch (error) {
-        console.log("Failed to fetch data from database");
+        return
       }
       setformUpdateProduct((formUpdateProduct) => ({
         ...formUpdateProduct,
@@ -316,7 +316,7 @@ function App() {
       setmodalSuccessUpdateProduct(true);
       navigate("/list-product");
     } catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
 
@@ -358,7 +358,7 @@ function App() {
         await API.patch('/profile/' + formUpdateProfile.id, formData, config);
       }
       catch (error) {
-        console.log("Failed to fetch data from database");
+        return
       }
       const updatedProfile = UserProfiles.map((profile) => {
         if (profile.id === formUpdateProfile.id) {
@@ -384,7 +384,7 @@ function App() {
       setModalSuccessUpdateProfile(true);
       navigate("/profile");
     } catch (error) {
-      console.log("Failed to fetch data from database");
+      return
     }
   });
 
