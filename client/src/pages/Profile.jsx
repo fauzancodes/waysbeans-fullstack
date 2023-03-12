@@ -74,11 +74,13 @@ export default function Profile(props) {
                   <Row key={item.id} className="justify-content-between align-items-center p-3 mb-4" style={{ backgroundColor:"#F6E6DA" }}>
                     <Col xs={12} className="d-flex flex-wrap justify-content-center align-items-center product-transaction">
                       {
-                        item.products?.map((product) => (
-                          <div className="d-flex flex-column align-items-center mx-2">
-                            <img src={product?.product_photo} alt={product?.product_name} className="mt-3" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>
-                            <h3 className="product-title font-size-16px mt-0 mb-3">{product?.product_name}</h3>
-                          </div>
+                        item.products?.map((product, index) => (
+                          index % 2 === 0 ? (
+                            <div className="d-flex flex-column align-items-center mx-2">
+                              <img src={product?.product_photo} alt={product?.product_name} className="mt-3" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>
+                              <h3 className="product-title font-size-16px mt-0 mb-3">{product?.product_name}</h3>
+                            </div>
+                          ) : null
                         ))
                       }
                     </Col>

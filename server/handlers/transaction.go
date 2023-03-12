@@ -111,16 +111,16 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		cartNew.ProductPhoto = product.Photo
 		cartNew.ProductPrice = product.Price
 		cartNew.OrderQuantity = cart.OrderQuantity
-		productTransaction = append(productTransaction, cartNew)
-	}
 
-	encountered := map[int]bool{}
-	productTransactionUnique := []models.ProductTransaction{}
-
-	for _, product := range productTransaction {
-		if !encountered[product.ProductID] {
-			encountered[product.ProductID] = true
-			productTransactionUnique = append(productTransactionUnique, product)
+		productExists := false
+    for _, product := range productTransaction {
+        if product.ProductID == cartNew.ProductID {
+					productExists = true
+          break
+        }
+    }
+		if !productExists {
+			productTransaction = append(productTransaction, cartNew)
 		}
 	}
 
@@ -142,7 +142,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		Email:              request.Email,
 		Phone:              request.Phone,
 		Address:            request.Address,
-		ProductTransaction: productTransactionUnique,
+		ProductTransaction: productTransaction,
 		TotalQuantity:      totalQuantity,
 		TotalPrice:         totalPrice,
 		Status:             "pending",
