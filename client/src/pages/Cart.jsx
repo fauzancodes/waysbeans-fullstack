@@ -69,16 +69,16 @@ export default function ProductDetails(props) {
         window.snap.pay(token, {
           onSuccess: function (result) {
             console.log(result);
-            props.SetUserCarts([]);
-            for (let cart of props.UserCarts) {
+            for (let cart of props.UserCarts.filter(cart => cart.user_id === props.User.id)) {
               const updatedProducts = props.Products.map((product) => {
                 if (product.id === cart.product_id) {
-                  return { ...product, stock: product.stock - 1 };
+                  return { ...product, stock: product.stock - cart.order_quantity };
                 }
                 return product;
               });
               props.SetProducts(updatedProducts);
             }
+            props.SetUserCarts([]);
             const paidProducts = [];
             for (let cart of props.UserCarts.filter(cart => cart.user_id === props.User.id)) {
               const newProduct = {product_name: props.Products.find(product => product.id === cart.product_id).name, product_photo: props.Products.find(product => product.id === cart.product_id).photo};
