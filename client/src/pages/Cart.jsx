@@ -152,7 +152,7 @@ export default function ProductDetails(props) {
     else props.setModalOutOfStockShow();
   }
   const decreaseQuantity = async (id) => {
-    if (props.UserCarts.find(cart => cart.id === id).order_quantity > 0) {
+    if (props.UserCarts.find(cart => cart.id === id).order_quantity > 1) {
       try {
         await API.patch('/decrease-order-quantity/' + id);
       }
