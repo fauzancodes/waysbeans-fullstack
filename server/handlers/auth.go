@@ -91,7 +91,7 @@ func (h *handlerAuth) Login(c echo.Context) error {
 	claims := jwt.MapClaims{}
 	claims["id"] = user.ID
 	claims["is_admin"] = user.IsAdmin
-	claims["exp"] = time.Now().Add(time.Hour * 2).Unix() // 2 hours expired
+	claims["exp"] = time.Now().Add(time.Hour * 2).Unix()
 
 	token, errGenerateToken := jwtToken.GenerateToken(&claims)
 	if errGenerateToken != nil {

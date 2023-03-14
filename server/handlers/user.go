@@ -1,9 +1,7 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 	"strconv"
 	dto "waysbeans/dto/result"
 	usersdto "waysbeans/dto/user"
@@ -111,23 +109,11 @@ func (h *handler) DeleteUser(c echo.Context) error {
 			if err != nil {
 				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 			}
-			fileName := userProfile.Photo
-			dirPath := "uploads"
-
-			filePath := fmt.Sprintf("%s/%s", dirPath, fileName)
 
 			_, err = h.ProfileRepository.DeleteProfile(userProfile)
 			if err != nil {
 				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 			}
-
-			err = os.Remove(filePath)
-			if err != nil {
-				fmt.Println("Failed to delete file"+fileName+":", err)
-				return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-			}
-
-			fmt.Println("File " + fileName + " deleted successfully")
 		}
 	}
 

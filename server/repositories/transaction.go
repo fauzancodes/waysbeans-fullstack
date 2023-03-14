@@ -57,12 +57,6 @@ func (r *repository) UpdateTransaction(status string, orderId int) (models.Trans
   return transaction, err
 }
 
-// func (r *repository) UpdateTransaction(transaction models.Transaction) (models.Transaction, error) {
-// 	err := r.db.Save(&transaction).Error
-
-// 	return transaction, err
-// }
-
 func (r *repository) DeleteTransaction(transaction models.Transaction) (models.Transaction, error) {
 	err := r.db.Delete(&transaction).Scan(&transaction).Error
 

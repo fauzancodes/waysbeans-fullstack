@@ -77,43 +77,6 @@ func (h *handlerCart) CreateCart(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart data created successfully", Data: convertResponseCart(data)})
 }
 
-func (h *handlerCart) UpdateCart(c echo.Context) error {
-	request := new(cartsdto.CartRequest)
-	if err := c.Bind(&request); err != nil {
-		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-	}
-
-	id, _ := strconv.Atoi(c.Param("id"))
-
-	cart, err := h.CartRepository.GetCart(id)
-
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-	}
-
-	if request.ProductID != 0 {
-		cart.ProductID = request.ProductID
-	}
-
-	if request.OrderQuantity != 0 {
-		cart.OrderQuantity = request.OrderQuantity
-	}
-
-	userLogin := c.Get("userLogin")
-	userId := userLogin.(jwt.MapClaims)["id"].(float64)
-
-	if request.UserID != 0 {
-		cart.UserID = int(userId)
-	}
-
-	data, err := h.CartRepository.UpdateCart(cart)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-	}
-
-	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart data updated successfully", Data: convertResponseCart(data)})
-}
-
 func (h *handlerCart) DeleteCart(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 

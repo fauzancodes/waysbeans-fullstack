@@ -15,7 +15,5 @@ func ProfileRoutes(e *echo.Group) {
 
 	e.GET("/profiles", h.FindProfiles)
 	e.GET("/profile/:id", middleware.Auth(h.GetProfile))
-	e.POST("/profile", middleware.Auth(middleware.UploadFile(h.CreateProfile)))
 	e.PATCH("/profile/:id", middleware.Auth(middleware.UploadFile(h.UpdateProfile)))
-	e.DELETE("/profile", middleware.Auth(h.DeleteProfile))
 }

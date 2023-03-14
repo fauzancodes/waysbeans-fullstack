@@ -192,8 +192,6 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 	snapResp, _ := s.CreateTransaction(req)
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: snapResp})
-
-	// return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Transaction data created successfully", Data: convertResponseTransaction(dataTransactions)})
 }
 
 func (h *handlerTransaction) Notification(c echo.Context) error {
@@ -287,75 +285,3 @@ func SendMail(status string, transaction models.Transaction) {
     log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
   }
 }
-
-// func (h *handler) UpdateTransaction(c echo.Context) error {
-// 	id, _ := strconv.Atoi(c.Param("id"))
-
-// 	request := new(transactionsdto.TransactionRequest)
-// 	if err := c.Bind(&request); err != nil {
-// 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-// 	}
-
-// 	transaction, err := h.TransactionRepository.GetTransaction(id)
-// 	if err != nil {
-// 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-// 	}
-
-// 	if request.UserID != 0 {
-// 		transaction.UserID = request.UserID
-// 	}
-// 	if request.Name != "" {
-// 		transaction.Name = request.Name
-// 	}
-// 	if request.Email != "" {
-// 		transaction.Email = request.Email
-// 	}
-// 	if request.Phone != "" {
-// 		transaction.Phone = request.Phone
-// 	}
-// 	if request.Address != "" {
-// 		transaction.Address = request.Address
-// 	}
-// 	if request.TotalQuantity != 0 {
-// 		transaction.TotalQuantity = request.TotalQuantity
-// 	}
-// 	if request.TotalPrice != 0 {
-// 		transaction.TotalPrice = request.TotalPrice
-// 	}
-
-// 	data, err := h.TransactionRepository.UpdateTransaction(transaction)
-// 	if err != nil {
-// 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-// 	}
-
-// 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Transaction data updated successfully", Data: convertResponseTransaction(data)})
-// }
-
-// func (h *handlerTransaction) DeleteTransaction(c echo.Context) error {
-// 	id, _ := strconv.Atoi(c.Param("id"))
-
-// 	transaction, err := h.TransactionRepository.GetTransaction(id)
-// 	if err != nil {
-// 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-// 	}
-
-// 	data, err := h.TransactionRepository.DeleteTransaction(transaction)
-// 	if err != nil {
-// 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-// 	}
-
-// 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart data updated successfully", Data: convertResponseTransaction(data)})
-// }
-
-// func convertResponseTransaction(u models.Transaction) transactionsdto.TransactionResponse {
-// 	return transactionsdto.TransactionResponse{
-// 		UserID:        u.UserID,
-// 		Name:          u.Name,
-// 		Email:         u.Email,
-// 		Phone:         u.Phone,
-// 		Address:       u.Address,
-// 		TotalQuantity: u.TotalQuantity,
-// 		TotalPrice:    u.TotalPrice,
-// 		Status:        u.Status,
-// 	}
-// }

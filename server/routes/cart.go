@@ -16,7 +16,6 @@ func CartRoutes(e *echo.Group) {
 	e.GET("/carts", h.FindCarts)
 	e.GET("/cart/:id", middleware.Auth(h.GetCart))
 	e.POST("/cart/:product_id", middleware.Auth(h.CreateCart))
-	e.PATCH("/cart/:id", middleware.Auth(h.UpdateCart))
 	e.DELETE("/cart/:id", middleware.Auth(h.DeleteCart))
 	e.PATCH("/increase-order-quantity/:id", middleware.Auth(h.IncreaseOrderQuntity))
 	e.PATCH("/decrease-order-quantity/:id", middleware.Auth(h.DecreaseOrderQuntity))

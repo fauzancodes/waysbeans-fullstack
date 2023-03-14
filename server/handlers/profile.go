@@ -2,8 +2,6 @@ package handlers
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 	profiledto "waysbeans/dto/profile"
 	dto "waysbeans/dto/result"
 	"waysbeans/models"
@@ -12,8 +10,9 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/go-playground/validator/v10"
-	"github.com/golang-jwt/jwt/v4"
 	"github.com/labstack/echo/v4"
 )
 
@@ -50,52 +49,14 @@ func (h *handlerProfile) GetProfile(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Profile data successfully obtained", Data: convertResponseProfile(profile)})
 }
 
-func (h *handlerProfile) CreateProfile(c echo.Context) error {
-	dataFile := c.Get("dataFile").(string)
-	fmt.Println("this is data file", dataFile)
-
-	userLogin := c.Get("userLogin")
-	userId := userLogin.(jwt.MapClaims)["id"].(float64)
-
-	request := profiledto.ProfileRequest{
-		ID:      int(userId),
-		Photo:   dataFile,
-		Phone:   c.FormValue("phone"),
-		Address: c.FormValue("address"),
-	}
-
-	validation := validator.New()
-	err := validation.Struct(request)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-	}
-
-	profile := models.Profile{
-		ID:      request.ID,
-		Photo:   request.Photo,
-		Phone:   request.Phone,
-		Address: request.Address,
-		UserID:  int(userId),
-	}
-
-	profile, err = h.ProfileRepository.CreateProfile(profile)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-	}
-
-	profile, _ = h.ProfileRepository.GetProfile(profile.ID)
-
-	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Profile data created successfully", Data: convertResponseProfile(profile)})
-}
-
 func (h *handlerProfile) UpdateProfile(c echo.Context) error {
-	dataFile := c.Get("dataFile").(string)
-	fmt.Println("this is data file", dataFile)
+	filepath := c.Get("dataFile").(string)
+	fmt.Println("this is data file", filepath)
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	request := profiledto.ProfileRequest{
 		ID:      id,
-		Photo:   dataFile,
+		Photo:   filepath,
 		Phone:   c.FormValue("phone"),
 		Address: c.FormValue("address"),
 	}
@@ -104,6 +65,12 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 	err := validation.Struct(request)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
+	}
+
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
+	if err != nil {
+		fmt.Println(err.Error())
 	}
 
 	user, err := h.ProfileRepository.GetProfile(id)
@@ -115,22 +82,7 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 	user.ID = request.ID
 
 	if request.Photo != "" {
-		if user.Photo != "" {
-			fileName := filepath.Base(user.Photo)
-			dirPath := "uploads"
-
-			filePath := fmt.Sprintf("%s/%s", dirPath, fileName)
-
-			err = os.Remove(filePath)
-			if err != nil {
-				fmt.Println("Failed to delete file"+fileName+":", err)
-				return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-			}
-
-			fmt.Println("File " + fileName + " deleted successfully")
-		}
-
-		user.Photo = request.Photo
+		user.Photo = resp.SecureURL
 	}
 	if request.Phone != "" {
 		user.Phone = request.Phone
@@ -145,36 +97,6 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Profile data updated successfully", Data: convertResponseProfile(data)})
-}
-
-func (h *handlerProfile) DeleteProfile(c echo.Context) error {
-	userLogin := c.Get("userLogin")
-	userId := userLogin.(jwt.MapClaims)["id"].(float64)
-
-	user, err := h.ProfileRepository.GetProfile(int(userId))
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-	}
-
-	fileName := user.Photo
-	dirPath := "uploads"
-
-	filePath := fmt.Sprintf("%s/%s", dirPath, fileName)
-
-	data, err := h.ProfileRepository.DeleteProfile(user)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-	}
-
-	err = os.Remove(filePath)
-	if err != nil {
-		fmt.Println("Failed to delete file"+fileName+":", err)
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-	}
-
-	fmt.Println("File " + fileName + " deleted successfully")
-
-	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Profile data deleted successfully", Data: convertResponseProfile(data)})
 }
 
 func convertResponseProfile(u models.Profile) profiledto.ProfileResponse {

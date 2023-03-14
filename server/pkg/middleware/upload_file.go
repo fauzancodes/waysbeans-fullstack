@@ -35,9 +35,8 @@ func UploadFile(next echo.HandlerFunc) echo.HandlerFunc {
 			}
 
 			data := tempFile.Name()
-			filename := "http://localhost:5000/uploads/" + data[8:]
 
-			c.Set("dataFile", filename)
+			c.Set("dataFile", data)
 			return next(c)
 		} else {
 			return c.JSON(http.StatusBadRequest, "The file extension is wrong. Allowed file extensions are images (.png, .jpg, .jpeg, .webp)")
