@@ -88,7 +88,7 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 		}
 
 		if resp.SecureURL == "" {
-			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: "Image is empty"})
+			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: resp.Error.Message})
 		}
 
 		product := models.Product{
