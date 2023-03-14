@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -82,16 +81,14 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
 		}
 
-		file, err := os.Open(filepath)
-		if err != nil {
-			log.Fatal(err)
-		}
-		defer file.Close()
-
 		cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
 		resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
 		if err != nil {
 			fmt.Println(err.Error())
+		}
+
+		if resp.SecureURL == "" {
+			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: "Image is empty"})
 		}
 
 		product := models.Product{
