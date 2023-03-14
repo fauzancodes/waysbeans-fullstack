@@ -106,6 +106,10 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 
 		product, _ = h.ProductRepository.GetProduct(product.ID)
 
+		if product.Photo == "" {
+			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: resp.Error.Message})
+		}
+
 		return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Product data created successfully", Data: convertResponseProduct(product)})
 	} else {
 		return c.JSON(http.StatusUnauthorized, dto.ErrorResult{Status: http.StatusUnauthorized, Message: "Sorry, you're not Admin"})
