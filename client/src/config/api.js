@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const API = axios.create({
-  baseURL: 'waysbeans-coffee.up.railway.app/api/v1/',
+  baseURL: 'https://waysbeans-coffee.up.railway.app/api/v1/',
 });
 
 export const setAuthToken = (token) => {
