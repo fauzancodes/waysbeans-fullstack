@@ -196,7 +196,7 @@ export default function ProductDetails(props) {
         show={modalPaymentShow} 
         onHide={() => setModalPaymentShow(false)} 
         total={props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0)}
-        qty={props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentValue) => accumulator + currentValue.order_quantity, 0)s} 
+        qty={props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentValue) => accumulator + currentValue.order_quantity, 0)} 
         formPayment={formPayment} 
         PaymentOnChange={(e) => formPaymentHandleOnChange(e)}
         PaymentOnSubmit={(e) => formPaymentHandleOnSubmit.mutate(e)}
