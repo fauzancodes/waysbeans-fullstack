@@ -20,9 +20,6 @@ const reducer = (state, action) => {
       if (payload.transaction === null) {
         payload.transaction = [];
       }
-      if (payload.profile.photo === "") {
-        payload.profile.photo = "/images/profile-picture-placeholder.webp";
-      }
       return {
         isLogin: true,
         user: payload,

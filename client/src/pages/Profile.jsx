@@ -38,9 +38,7 @@ export default function Profile(props) {
           <Col xs={12} lg={6} className="mb-5 animate__animated animate__slideInLeft">
             <h2 className="product-title mb-4 font-size-24px">My Profile</h2>
             <div className="d-flex flex-wrap align-items-start">
-              <img onClick={() => UpdateProfile(props.User.id)} id="profile-picture" src={
-                props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? "/images/profile-picture-placeholder.webp" : props.Profiles.find(profile => profile.user_id === props.User.id).photo
-              } alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem", height:"14rem", objectFit:"cover", cursor:"pointer" }}/>
+              <img onClick={() => UpdateProfile(props.User.id)} id="profile-picture" src={props.Profiles.find(profile => profile.user_id === props.User.id).photo} alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem", height:"14rem", objectFit:"cover", cursor:"pointer" }}/>
               <input type="file" id="profile-picture-file" className="d-none"></input>
               <div>
                 <h5 className="product-title font-size-18px">Full Name</h5>
