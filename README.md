@@ -4,7 +4,7 @@ A simple E-Commerce called WaysBeans which provides products in the form of qual
 
 This project demonstrates in full how to create a fullstack E-Commerce using [React](https://reactjs.org/) and [Bootstrap](https://getbootstrap.com/) for the frontend, [GO](https://go.dev/) programming language with the [Echo](https://echo.labstack.com/) framework for the backend, the [GORM](https://gorm.io/) ORM library to handle database query, [PostgreSQL](https://www.postgresql.org/) as the database, and [Cloudinary](https://cloudinary.com/) as as the file storage.
 
-### Available features:
+## Available features
 
 - Login and register forms that function properly
 - Filter login as customer or admin
