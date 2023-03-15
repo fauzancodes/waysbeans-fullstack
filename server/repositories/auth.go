@@ -19,6 +19,16 @@ func RepositoryAuth(db *gorm.DB) *repository {
 func (r *repository) Register(user models.User) (models.User, error) {
 	err := r.db.Create(&user).Error
 
+	profile := models.Profile{
+		ID:      user.ID,
+		Photo:   "/images/profile-picture-placeholder.webp",
+		Phone:   "",
+		Address: "",
+		UserID:  user.ID,
+	}
+
+	r.db.Create(profile)
+
 	return user, err
 }
 
