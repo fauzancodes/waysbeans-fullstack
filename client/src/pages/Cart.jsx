@@ -108,7 +108,7 @@ export default function ProductDetails(props) {
             }));
       
             props.showModalSuccessTransaction();
-            // navigate("/profile");
+            navigate("/profile");
           },
           onPending: function (result) {
             return
@@ -149,7 +149,7 @@ export default function ProductDetails(props) {
       });
       props.SetUserCarts(updatedCarts);
     }
-    else props.setModalOutOfStockShow();
+    else setModalExceedStock(true);
   }
   const decreaseQuantity = async (id) => {
     if (props.UserCarts.find(cart => cart.id === id).order_quantity > 1) {

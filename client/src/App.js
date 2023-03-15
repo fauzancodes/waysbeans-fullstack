@@ -558,7 +558,6 @@ function App() {
                 Transactions={TransactionsList} 
                 SetTransactions={SetTransactionsList} 
                 showModalSuccessTransaction={() => setmodalSuccessTransaction(true)} 
-                setModalOutOfStockShow={() => setModalOutOfStockShow(true)}
               />} />
               <Route path="/profile" element={<Profile 
                 User={state.user} 
