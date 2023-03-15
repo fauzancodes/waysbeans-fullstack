@@ -136,6 +136,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		TotalPrice:         totalPrice,
 		Status:             "pending",
 	}
+	fmt.Println(transaction)
 
 	dataTransactions, err := h.TransactionRepository.CreateTransaction(transaction)
 	if err != nil {
