@@ -12,7 +12,6 @@ import (
 
 	"github.com/cloudinary/cloudinary-go/v2"
 	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
-	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 )
 
@@ -59,12 +58,6 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 		Photo:   filepath,
 		Phone:   c.FormValue("phone"),
 		Address: c.FormValue("address"),
-	}
-
-	validation := validator.New()
-	err := validation.Struct(request)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
 	}
 
 	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)

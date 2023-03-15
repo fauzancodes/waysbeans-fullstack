@@ -161,12 +161,6 @@ func (h *handlerProduct) UpdateProduct(c echo.Context) error {
 			Stock:       stock,
 		}
 
-		// validation := validator.New()
-		// err = validation.Struct(request)
-		// if err != nil {
-		// 	return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-		// }
-
 		product, err := h.ProductRepository.GetProduct(int(id))
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
