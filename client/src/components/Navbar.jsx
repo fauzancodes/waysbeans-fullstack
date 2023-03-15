@@ -32,7 +32,7 @@ export default function NavbarSection(props) {
                     <Dropdown className="d-inline">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
                       {
-                        props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null ? (
+                        props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
                           <img id="profile-picture" src="/images/profile-picture-placeholder.webp" alt="Profile Icon Default" className="rounded me-4 mb-4" style={{ width:"11rem", height:"14rem", objectFit:"cover", cursor:"pointer" }}/>
                         ) : (
                           <img id="profile-picture" src={props.Profiles.find(profile => profile.user_id === props.User.id).photo} alt="Profile Icon" className="rounded me-4 mb-4" style={{ width:"11rem", height:"14rem", objectFit:"cover", cursor:"pointer" }}/>
