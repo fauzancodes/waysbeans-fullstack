@@ -103,7 +103,7 @@ func (h *handlerAuth) Login(c echo.Context) error {
 	if err != nil {
 		profile := models.Profile{
 			ID:      user.ID,
-			Photo:   "/images/profile-picture-placeholder.webp",
+			Photo:   "",
 			Phone:   "",
 			Address: "",
 			UserID:  user.ID,
