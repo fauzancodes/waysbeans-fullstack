@@ -53,26 +53,11 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		Password: password,
 	}
 
-	userData, err := h.AuthRepository.Login(user.Email)
+	_, err = h.AuthRepository.Login(user.Email)
 	if err != nil {
 		data, err := h.AuthRepository.Register(user)
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
-		}
-		
-		_, err = h.ProfileRepository.GetProfile(userData.ID)
-		if err != nil {
-			profile := models.Profile{
-				ID:      userData.ID,
-				Photo:   "",
-				Phone:   "",
-				Address: "",
-				UserID:  userData.ID,
-			}
-			_, err = h.ProfileRepository.CreateProfile(profile)
-			if err != nil {
-				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-			}
 		}
 
 		return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Your registration is successful", Data: data})
@@ -112,6 +97,21 @@ func (h *handlerAuth) Login(c echo.Context) error {
 	if errGenerateToken != nil {
 		log.Println(errGenerateToken)
 		return echo.NewHTTPError(http.StatusUnauthorized)
+	}
+
+	_, err = h.ProfileRepository.GetProfile(user.ID)
+	if err != nil {
+		profile := models.Profile{
+			ID:      user.ID,
+			Photo:   "/images/profile-picture-placeholder.webp",
+			Phone:   "",
+			Address: "",
+			UserID:  user.ID,
+		}
+		_, err = h.ProfileRepository.CreateProfile(profile)
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+		}
 	}
 
 	loginResponse := authdto.LoginResponse{
