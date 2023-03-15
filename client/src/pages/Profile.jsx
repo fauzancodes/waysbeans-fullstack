@@ -81,7 +81,7 @@ export default function Profile(props) {
                         item.products?.map((product, index) => (
                           <div className="d-flex flex-column align-items-center mx-2">
                             <img src={product?.product_photo} alt={product?.product_name} className="mt-3" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>
-                            <h3 className="product-title font-size-16px mt-0 mb-3">{product?.product_name}</h3>
+                            <h3 className="product-title font-size-16px mt-0 mb-3">{`${product?.product_name} x${product?.order_quantity}`}</h3>
                           </div>
                         ))
                       }

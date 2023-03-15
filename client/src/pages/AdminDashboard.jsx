@@ -37,7 +37,7 @@ export default function ProductDetails(props) {
                     <td>{transaction.email}</td>
                     <td>{transaction.phone}</td>
                     <td>{transaction.address}</td>
-                    <td>{transaction.products.map((product, index) => <div>{`${product.product_name}. `}</div>)}</td>
+                    <td>{transaction.products.map((product, index) => <div>{`${product.product_name} x${product.order_quantity}. `}</div>)}</td>
                     <td>{transaction.total_quantity}</td>
                     <td>{transaction.total_price}</td>
                     {

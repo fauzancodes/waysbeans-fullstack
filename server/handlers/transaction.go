@@ -244,11 +244,6 @@ func SendMail(status string, transaction models.Transaction) {
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Document</title>
-      <style>
-        h1 {
-        color: brown;
-        }
-      </style>
       </head>
       <body>
       <h2>Product payment :</h2>
