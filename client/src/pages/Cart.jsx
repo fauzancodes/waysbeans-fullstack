@@ -237,7 +237,7 @@ export default function ProductDetails(props) {
                           <h3 className="product-title font-size-18px mb-4">{props.Products.find(product => product.id === item.product_id).name}</h3>
                           <div className="d-flex align-items-center">
                             <img src="/images/icon-decrease.webp" alt="Decrease Button" onClick={() => decreaseQuantity(item.id)} style={{ cursor:"pointer" }}/>
-                            <span className="font-size-18px custom-text-primar px-3 mx-3 rounded" style={{ backgroundColor:"#F6E6DA" }}>{props.UserCarts.find(cart => cart.id === item.id).order_quantity}</span>
+                            <span className="font-size-18px custom-text-primar px-3 mx-3 rounded" style={{ backgroundColor:"#F6E6DA" }}>{item.order_quantity}</span>
                             <img src="/images/icon-increase.webp" alt="Increase Button" onClick={() => increaseQuantity(item.id)} style={{ cursor:"pointer" }}/>
                           </div>
                         </div>

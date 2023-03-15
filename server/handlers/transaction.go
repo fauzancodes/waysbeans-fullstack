@@ -111,17 +111,6 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		cartNew.ProductPhoto = product.Photo
 		cartNew.ProductPrice = product.Price
 		cartNew.OrderQuantity = cart.OrderQuantity
-
-		productExists := false
-    for _, product := range productTransaction {
-        if product.ProductID == cartNew.ProductID {
-					productExists = true
-          break
-        }
-    }
-		if !productExists {
-			productTransaction = append(productTransaction, cartNew)
-		}
 	}
 
 	var transactionIsMatch = false
