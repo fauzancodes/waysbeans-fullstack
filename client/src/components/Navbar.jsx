@@ -33,9 +33,9 @@ export default function NavbarSection(props) {
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
                       {
                         props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
-                          <img id="profile-picture" src="/images/profile-picture-placeholder.webp" alt="Profile Icon Default" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
+                          <img id="profile-icon" src="/images/profile-picture-placeholder.webp" alt="Profile Icon Default" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
                         ) : (
-                          <img id="profile-picture" src={props.Profiles.find(profile => profile.user_id === props.User.id).photo} alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
+                          <img id="profile-icon" src={props.Profiles.find(profile => profile.user_id === props.User.id).photo} alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
                         )
                       }
                       </Dropdown.Toggle>
