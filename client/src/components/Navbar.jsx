@@ -78,7 +78,7 @@ export default function NavbarSection(props) {
                 )
               ) : (
                 <>
-                  <Button onClick={props.showModalLogin} variant="outline-primary" className="custom-btn-utilities custom-btn-outline-primary fw-bold me-3">Login</Button>
+                  <Button onClick={props.showModalLogin} variant="outline-primary" className={`custom-btn-utilities ${props.darkMode ? "custom-btn-outline-primary-dark-mode" : "custom-btn-outline-primary"} fw-bold me-3`}>Login</Button>
                   <Button onClick={props.showModalRegister} variant="primary" className="custom-btn-utilities custom-btn-primary fw-bold">Register</Button>
                 </>
               )
