@@ -8,7 +8,7 @@ export default function NavbarSection(props) {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" fixed="top" style={{ backgroundColor:"#f5f5f5", boxShadow: "0 0.625rem 1.875rem rgba(0, 0, 0, 0.25)" }}>
+      <Navbar collapseOnSelect expand="lg" fixed="top" style={{ backgroundColor: props.darkMode ? "#1d1d1d" : "#f5f5f5", boxShadow: "0 0.625rem 1.875rem rgba(0, 0, 0, 0.25)" }}>
         <Container>
           <Link to="/">
             <Navbar.Brand>

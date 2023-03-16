@@ -547,7 +547,8 @@ function App() {
               });
               settoastSuccessLogout(true);
             }} 
-            toggleDarkMode={toggleDarkMode}
+            toggleDarkMode={toggleDarkMode} 
+            darkMode={darkMode} 
           />
           <Routes>
             <Route path="/" element={state.user.is_admin ? <AdminDashboard Transactions={TransactionsList} /> : <Home Products={ProductsList} />} />
