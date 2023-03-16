@@ -288,7 +288,7 @@ func SendMail(status string, transaction models.Transaction) {
 
 		var productsTransaction string
 		for index, product := range transaction.ProductTransaction {
-			productsTransaction += "(" + strconv.Itoa(index + 1) + ") " + product.ProductName + " x" + strconv.Itoa(product.OrderQuantity) + ". <br/>"
+			productsTransaction += "(" + strconv.Itoa(index + 1) + ") " + product.ProductName + ", Rp" + strconv.Itoa(product.ProductPrice) + ", x" + strconv.Itoa(product.OrderQuantity) + "<br/>"
 		}
     var totalQuantity = strconv.Itoa(transaction.TotalQuantity)
     var totalPrice = strconv.Itoa(transaction.TotalPrice)
@@ -312,7 +312,9 @@ func SendMail(status string, transaction models.Transaction) {
 				<li>Email : %s</li>
 				<li>Phone : %s</li>
 				<li>Address : %s</li>
+				<br/><br/>
 				<li>Products :<br/> %s</li>
+				<br/><br/>
         <li>Total Quantity : %s</li>
         <li>Total Payment: Rp.%s</li>
         <li>Status : <b>%s</b></li>
