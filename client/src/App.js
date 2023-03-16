@@ -84,12 +84,8 @@ function App() {
   };
 
   const [darkMode, setDarkMode] = useState(false);
-  let darkModeStorage = localStorage.getItem("waysbeansdarkmode") === true ? true : false;
-  setDarkMode(darkModeStorage);
   const toggleDarkMode = () => {
-    let darkModeStorage = localStorage.getItem("waysbeansdarkmode") === true ? true : false;
-    setDarkMode(!darkModeStorage);
-    localStorage.setItem("waysbeansdarkmode", darkMode);
+    setDarkMode(!darkMode);
   };
 
   const [ProductsList, SetProductsList] = useState([]);
