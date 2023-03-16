@@ -412,9 +412,9 @@ function App() {
   return (
     <>
       {isLoading ? (
-          <div className="d-flex justify-content-center align-items-center" style={{width:"100vw",height:"100vh"}}>
-            <img id="loader" src="/images/icon-logo.webp" alt="WaysBeans" className="w-50 position-absolute"/>
-            <img src="/images/icon-logo.webp" alt="WaysBeans" className="w-50 position-relative"/>
+          <div id="loader-container" className="d-flex justify-content-center align-items-center" style={{width:"100vw",height:"100vh"}}>
+            <img id="loader" src="/images/icon-logo.webp" alt="WaysBeans" className="position-absolute"/>
+            <img src="/images/icon-logo.webp" alt="WaysBeans" className="position-relative"/>
           </div>
         ) :
         <>

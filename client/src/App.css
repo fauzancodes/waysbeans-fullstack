@@ -110,7 +110,9 @@ textarea {
 #profile-menu::after {
   content: none;
 }
-
+#loader-container img {
+  width: 25%;
+}
 #loader {
   animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
@@ -162,6 +164,9 @@ textarea {
   }
   .button-delete, .button-update {
     width: 100% !important;
+  }
+  #loader-container img {
+    width: 75%;
   }
 }
 
