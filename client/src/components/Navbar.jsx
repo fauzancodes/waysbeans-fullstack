@@ -24,9 +24,9 @@ export default function NavbarSection(props) {
                     <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline">
                       <img src="/images/icon-cart.webp" alt="Cart" className="me-5"/>
                       {
-                        props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 ? (
+                        props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 && (
                           <span className="position-absolute bg-danger text-light d-flex justify-content-center align-items-center rounded-circle" style={{ width:"1.25rem", height:"1.25rem",top:"0",right:"50%" }}>{props.UserCarts.filter(cart => cart.user_id === props.User.id).length}</span> 
-                        ) : null
+                        )
                       }
                     </div>
                     <Dropdown className="d-inline">

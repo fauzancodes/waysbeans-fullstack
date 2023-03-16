@@ -52,20 +52,20 @@ export default function Profile(props) {
                 <h5 className="product-title font-size-18px">Email</h5>
                 <div className="font-size-18px mb-4">{props.User.email}</div>
                 {
-                  props.Profiles.find(profile => profile.user_id === props.User.id)?.phone !== "" ? (
+                  props.Profiles.find(profile => profile.user_id === props.User.id)?.phone !== "" && (
                     <>
                       <h5 className="product-title font-size-18px">Phone</h5>
                       <div className="font-size-18px mb-4">{props.Profiles.find(profile => profile.user_id === props.User.id)?.phone}</div>
                     </>
-                  ) : null
+                  )
                 }
                 {
-                  props.Profiles.find(profile => profile.user_id === props.User.id)?.address !== "" ? (
+                  props.Profiles.find(profile => profile.user_id === props.User.id)?.address !== "" && (
                     <>
                       <h5 className="product-title font-size-18px">Address</h5>
                       <div className="font-size-18px mb-4">{props.Profiles.find(profile => profile.user_id === props.User.id)?.address}</div>
                     </>
-                  ) : null
+                  )
                 }
               </div>
             </div>

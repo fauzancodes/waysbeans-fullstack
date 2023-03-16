@@ -346,7 +346,7 @@ export default function ProductDetails(props) {
             }
             </Col>
             {
-              props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 ? (
+              props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 && (
                 <Col xs={12} lg={4} className="py-4 px-0 ms-2 animate__animated animate__slideInRight" style={{ borderTop:"1px solid #613D2B" }}>
                   <div className="d-flex justify-content-between mb-4 font-size-18px">
                     <div className="product-details">Subtotal</div>
@@ -364,7 +364,7 @@ export default function ProductDetails(props) {
                     <Button variant="primary" onClick={() => setModalPaymentShow(true)} size="lg" className="custom-btn-primary fw-bold font-size-18px w-75">Pay</Button>
                   </div>
                 </Col>
-              ) : null
+              )
             }
           </Row>
         </Row>
