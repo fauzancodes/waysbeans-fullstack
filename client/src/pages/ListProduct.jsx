@@ -81,7 +81,7 @@ export default function ProductDetails(props) {
         </Modal.Body>
       </Modal>
       <Container>
-        <h1 className="custom-margin-top product-title font-size-36px mb-5">List Product</h1>
+        <h1 className={`custom-margin-top ${props.darkMode ? "fw-bold text-light text-center" : "product-title"} font-size-36px mb-5`}style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>List Product</h1>
         {
           ProductsListSorted.length > 0 ? (
             <Table responsive bordered hover className="mx-auto w-100 animate__animated animate__fadeIn">
@@ -100,12 +100,12 @@ export default function ProductDetails(props) {
                 {
                   ProductsListSorted.map((item, index) => (
                     <tr key={item.id}>
-                      <td>{index + 1}</td>
+                      <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{index + 1}</td>
                       <td><img src={item.photo} alt={item.name} style={{ width:"7.5rem", height:"10rem", objectFit:"cover" }}/></td>
-                      <td>{item.name}</td>
-                      <td>{item.stock}</td>
-                      <td>{item.price}</td>
-                      <td>{item.description}</td>
+                      <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{item.name}</td>
+                      <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{item.stock}</td>
+                      <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{item.price}</td>
+                      <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{item.description}</td>
                       <td style={{ width:"15rem" }}>
                         <Button onClick={() => {setProductId(item.id);setModalDeleteProduct(true)}} variant="danger" className="py-0 me-2 button-delete mb-2" style={{ width:"48%" }}>delete</Button>
                         <Button onClick={() => UpdateProduct(item.id)} variant="success" className="py-0 button-update mb-2" style={{ width:"48%" }}>update</Button>
