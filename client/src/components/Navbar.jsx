@@ -52,6 +52,10 @@ export default function NavbarSection(props) {
                       }
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="border-0" style={{ boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 20px rgba(0, 0, 0, 0.25)" }}>
+                        <Dropdown.Item onClick={props.toggleDarkMode} className="fw-bold d-flex align-items-center py-2">
+                          <img src="/images/icon-dark-mode.webp" alt="Dark Mode" className="me-2" style={{ width:"1.5rem" }}/>
+                          {`${ props.darkMode ? "Light" : "Dark"} Mode`}
+                        </Dropdown.Item>
                         <Dropdown.Item onClick={() => navigate("/profile")} className="fw-bold d-flex align-items-center py-2">
                           <img src="/images/icon-profile.webp" alt="Profile" className="me-2" style={{ width:"1.5rem" }}/>
                           Profile
@@ -70,6 +74,10 @@ export default function NavbarSection(props) {
                     <img src="/images/profile-admin.webp" alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="border-0" style={{ boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 20px rgba(0, 0, 0, 0.25)" }}>
+                      <Dropdown.Item onClick={props.toggleDarkMode} className="fw-bold d-flex align-items-center py-2">
+                        <img src="/images/icon-dark-mode.webp" alt="Dark Mode" className="me-2" style={{ width:"1.5rem" }}/>
+                        {`${ props.darkMode ? "Light" : "Dark"} Mode`}
+                      </Dropdown.Item>
                       <Dropdown.Item onClick={() => navigate("/add-product-page")} className="fw-bold d-flex align-items-center py-2">
                         <img src="/images/icon-coffee-bean.webp" alt="Profile" className="me-2" style={{ width:"1.5rem" }}/>
                         Add Product
@@ -91,10 +99,10 @@ export default function NavbarSection(props) {
                 <>
                   <Button onClick={props.showModalLogin} variant="outline-primary" className={`custom-btn-utilities ${props.darkMode ? "custom-btn-outline-primary-dark-mode" : "custom-btn-outline-primary"} fw-bold me-3`}>Login</Button>
                   <Button onClick={props.showModalRegister} variant="primary" className="custom-btn-utilities custom-btn-primary fw-bold me-3">Register</Button>
+                  <Button id="dark-mode-button" onClick={props.toggleDarkMode} variant={ props.darkMode ? "light" : "dark" } className="custom-btn-utilities fw-bold">{`${ props.darkMode ? "Light" : "Dark"} Mode`}</Button>
                 </>
               )
             }
-            <Button id="dark-mode-button" onClick={props.toggleDarkMode} variant={ props.darkMode ? "light" : "dark" } className="custom-btn-utilities fw-bold">{`${ props.darkMode ? "Light" : "Dark"} Mode`}</Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
