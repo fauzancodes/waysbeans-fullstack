@@ -347,20 +347,20 @@ export default function ProductDetails(props) {
             </Col>
             {
               props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 && (
-                <Col xs={12} lg={4} className={`${props.darkMode ? "p-4" : "py-4"} px-0 ms-2 animate__animated animate__slideInRight`} style={{ borderTop:"1px solid #613D2B", backgroundColor: props.darkMode ? "#F6E6DA" : "transparent" }}>
-                  <div className="d-flex justify-content-between mb-4 font-size-18px">
+                <Col xs={12} lg={4} className={`py-4 px-0 ms-2 animate__animated animate__slideInRight`} style={{ borderTop:"1px solid #613D2B", backgroundColor: props.darkMode ? "#F6E6DA" : "transparent" }}>
+                  <div className={`d-flex justify-content-between mb-4 font-size-18px ${props.darkMode && "px-4"}`}>
                     <div className="product-details">Subtotal</div>
                     <div className="product-details">Rp{props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0)}</div>
                   </div>
-                  <div className="d-flex justify-content-between pb-4 font-size-18px" style={{ borderBottom:"1px solid #613D2B" }}>
+                  <div className={`d-flex justify-content-between pb-4 font-size-18px ${props.darkMode && "px-4"}`} style={{ borderBottom:"1px solid #613D2B" }}>
                     <div className="product-details">Qty</div>
                     <div className="product-details">{props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentValue) => accumulator + currentValue.order_quantity, 0)}</div>
                   </div>
-                  <div className="d-flex justify-content-between mt-4 font-size-18px">
+                  <div className={`d-flex justify-content-between mt-4 font-size-18px ${props.darkMode && "px-4"}`}>
                     <div className="product-details fw-bold">Total</div>
                     <div className="product-details fw-bold">Rp{props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0)}</div>
                   </div>
-                  <div className="d-flex justify-content-end mt-5">
+                  <div className={`d-flex ${props.darkMode ? "justify-content-center" : "justify-content-end"} mt-5`}>
                     <Button variant="primary" onClick={() => setModalPaymentShow(true)} size="lg" className="custom-btn-primary fw-bold font-size-18px w-75">Pay</Button>
                   </div>
                 </Col>
