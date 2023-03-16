@@ -420,10 +420,24 @@ function App() {
   return (
     <>
       {isLoading ? (
-          <div id="loader-container" className="d-flex justify-content-center align-items-center" style={{width:"100vw",height:"100vh"}}>
-            <img id="loader" src="/images/icon-logo.webp" alt="WaysBeans" className="position-absolute"/>
-            <img src="/images/icon-logo.webp" alt="WaysBeans" className="position-relative"/>
-          </div>
+          <>
+            <style>{`body { background-color: ${darkMode ? "#333333" : "#ffffff"}; color: ${darkMode ? "#ffffff" : "#000000"}; }`}</style>
+            <div id="loader-container" className="d-flex justify-content-center align-items-center" style={{width:"100vw",height:"100vh"}}>
+              {
+                darkMode ? (
+                  <>
+                    <img id="loader" src="/images/icon-logo-dark-mode.webp" alt="WaysBeans" className="position-absolute"/>
+                    <img src="/images/icon-logo-dark-mode.webp" alt="WaysBeans" className="position-relative"/>
+                  </>
+                ) : (
+                  <>
+                    <img id="loader" src="/images/icon-logo.webp" alt="WaysBeans" className="position-absolute"/>
+                    <img src="/images/icon-logo.webp" alt="WaysBeans" className="position-relative"/>
+                  </>
+                )
+              }
+            </div>
+          </>
         ) :
         <>
           <style>{`body { background-color: ${darkMode ? "#333333" : "#ffffff"}; color: ${darkMode ? "#ffffff" : "#000000"}; }`}</style>
