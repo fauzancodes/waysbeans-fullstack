@@ -46,14 +46,14 @@ export default function Profile(props) {
               }
               <input type="file" id="profile-picture-file" className="d-none"></input>
               <div>
-                <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Full Name</h5>
+                <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "#F6E6DA" }}>Full Name</h5>
                 <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.User.name}</div>
-                <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Email</h5>
+                <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "#F6E6DA" }}>Email</h5>
                 <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.User.email}</div>
                 {
                   props.Profiles.find(profile => profile.user_id === props.User.id)?.phone !== "" && (
                     <>
-                      <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Phone</h5>
+                      <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "#F6E6DA" }}>Phone</h5>
                       <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.Profiles.find(profile => profile.user_id === props.User.id)?.phone}</div>
                     </>
                   )
@@ -61,7 +61,7 @@ export default function Profile(props) {
                 {
                   props.Profiles.find(profile => profile.user_id === props.User.id)?.address !== "" && (
                     <>
-                      <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Address</h5>
+                      <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "#F6E6DA" }}>Address</h5>
                       <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.Profiles.find(profile => profile.user_id === props.User.id)?.address}</div>
                     </>
                   )
