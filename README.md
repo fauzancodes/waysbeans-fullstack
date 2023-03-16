@@ -23,3 +23,4 @@ This project demonstrates in full how to create a fullstack E-Commerce using [Re
 - Password Hashing Middleware for each User using [Bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt).
 - Middleware Upload File to upload files from user input files.
 - Middleware to authenticate by creating a Token from [JWT](https://jwt.io/).
+- Payment Gateways use [Midtrans](midtrans.com)

@@ -111,6 +111,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		cartNew.ProductPhoto = product.Photo
 		cartNew.ProductPrice = product.Price
 		cartNew.OrderQuantity = cart.OrderQuantity
+		productTransaction = append(productTransaction, cartNew)
 	}
 
 	var transactionIsMatch = false
