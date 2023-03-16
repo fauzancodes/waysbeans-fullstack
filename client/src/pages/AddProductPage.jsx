@@ -9,7 +9,7 @@ function AddProductPage(props) {
         <Col xs={12} lg={6} className="mb-4 animate__animated animate__slideInLeft">
           <h1 className={`fw-bold ${props.darkMode ? "text-light" : "custom-text-primary"} mb-5`}  style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>Add Product</h1>
           <Form onSubmit={props.AddProductOnSubmit}>
-            <Form.Group className="mb-4" controlId="formName">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formName">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Name</Form.Label>
