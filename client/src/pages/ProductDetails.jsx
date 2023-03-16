@@ -62,7 +62,7 @@ export default function ProductDetails(props) {
   };
 
   return (
-    <Container className="overflow-x-hidden">
+    <Container>
       <Row className="custom-margin-top justify-content-between align-items-center mx-5 mb-5 responsive-margin-x">
         <Col xs={12} lg={5} className="animate__animated animate__slideInLeft">
           <img src={Product.photo} alt={`${Product.name}`} className="w-100 h-75" style={{ objectFit:"cover" }}/>
