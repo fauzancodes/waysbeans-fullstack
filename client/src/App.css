@@ -111,6 +111,17 @@ textarea {
   content: none;
 }
 
+#loader {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 992px) {
   #title {
     padding: 2rem !important;
