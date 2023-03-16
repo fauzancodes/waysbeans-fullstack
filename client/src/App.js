@@ -562,7 +562,8 @@ function App() {
               SetUserCarts={SetUserCarts} 
               LoggedInUserId={state.user.id} 
               setmodalSuccessAddCart={() => setmodalSuccessAddCart(true)}
-              setModalOutOfStockShow={() => setModalOutOfStockShow(true)}
+              setModalOutOfStockShow={() => setModalOutOfStockShow(true)} 
+              darkMode={darkMode} 
             />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/" element={<CustomerRoute isLogin={state.isLogin} />}>

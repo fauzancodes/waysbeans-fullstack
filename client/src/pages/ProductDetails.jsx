@@ -68,9 +68,9 @@ export default function ProductDetails(props) {
           <img src={Product.photo} alt={`${Product.name}`} className="w-100 h-75" style={{ objectFit:"cover" }}/>
         </Col>
         <Col xs={12} lg={6} className="animate__animated animate__slideInRight">
-          <h1 className="product-title font-size-48px">{Product.name}</h1>
-          <div className="product-details font-size-18px mb-4">Stock: {Product.stock}</div>
-          <p className="font-size-18px" style={{ textAlign:"justify" }}>{Product.description}</p>
+          <h1 className={`${props.darkMode === false ? "product-title" : "text-light"} font-size-48px ${props.darkMode && "text-center"}`} style={{ backgroundColor: props.darkMode ? "#613D2B" : "none", padding: props.darkMode ? "1rem" : "none" }}>{Product.name}</h1>
+          <div className={`product-details ${props.darkMode && "fw-bold"} font-size-18px mb-4`}>Stock: {Product.stock}</div>
+          <p className="font-size-18px" style={{ textAlign:"justify", color: props.darkMode ? "#FFFFFF" : "#000000" }}>{Product.description}</p>
           <div className="text-end product-details fw-bold font-size-24px">Rp{Product.price}</div>
           <div className="d-grid mt-5">
             <Button onClick={addToCart} variant="primary" size="lg" className="custom-btn-primary fw-bold font-size-18px w-100">Add Cart</Button>
