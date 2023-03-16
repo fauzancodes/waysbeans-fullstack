@@ -143,24 +143,6 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
 	}
 
-	carts, err := h.CartRepository.FindCarts()
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-	}
-	for _, cart := range carts {
-		if cart.UserID == int(userId) {
-			cartToDelete, err := h.CartRepository.GetCart(cart.ID)
-			if err != nil {
-				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-			}
-
-			_, err = h.CartRepository.DeleteCart(cartToDelete)
-			if err != nil {
-				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-			}
-		}
-	}
-
 	var s = snap.Client{}
 	s.New(os.Getenv("SERVER_KEY"), midtrans.Sandbox)
 
@@ -203,19 +185,92 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 	if transactionStatus == "capture" {
 		if fraudStatus == "challenge" {
 			h.TransactionRepository.UpdateTransaction("pending", order_id)
+
+			carts, err := h.CartRepository.FindCarts()
+			if err != nil {
+				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+			}
+			for _, cart := range carts {
+				if cart.UserID == transaction.UserID {
+					cartToDelete, err := h.CartRepository.GetCart(cart.ID)
+					if err != nil {
+						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+					}
+		
+					_, err = h.CartRepository.DeleteCart(cartToDelete)
+					if err != nil {
+						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+					}
+				}
+			}
+
 		} else if fraudStatus == "accept" {
 			SendMail("success", transaction)
 			h.TransactionRepository.UpdateTransaction("success", order_id)
+			
+			carts, err := h.CartRepository.FindCarts()
+			if err != nil {
+				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+			}
+			for _, cart := range carts {
+				if cart.UserID == transaction.UserID {
+					cartToDelete, err := h.CartRepository.GetCart(cart.ID)
+					if err != nil {
+						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+					}
+		
+					_, err = h.CartRepository.DeleteCart(cartToDelete)
+					if err != nil {
+						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+					}
+				}
+			}
 		}
 	} else if transactionStatus == "settlement" {
 		SendMail("success", transaction)
 		h.TransactionRepository.UpdateTransaction("success", order_id)
+		
+		carts, err := h.CartRepository.FindCarts()
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+		}
+		for _, cart := range carts {
+			if cart.UserID == transaction.UserID {
+				cartToDelete, err := h.CartRepository.GetCart(cart.ID)
+				if err != nil {
+					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+				}
+	
+				_, err = h.CartRepository.DeleteCart(cartToDelete)
+				if err != nil {
+					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+				}
+			}
+		}
 	} else if transactionStatus == "deny" {
 		h.TransactionRepository.UpdateTransaction("failed", order_id)
 	} else if transactionStatus == "cancel" || transactionStatus == "expire" {
 		h.TransactionRepository.UpdateTransaction("failed", order_id)
 	} else if transactionStatus == "pending" {
 		h.TransactionRepository.UpdateTransaction("pending", order_id)
+		
+		carts, err := h.CartRepository.FindCarts()
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+		}
+		for _, cart := range carts {
+			if cart.UserID == transaction.UserID {
+				cartToDelete, err := h.CartRepository.GetCart(cart.ID)
+				if err != nil {
+					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+				}
+	
+				_, err = h.CartRepository.DeleteCart(cartToDelete)
+				if err != nil {
+					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+				}
+			}
+		}
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: notificationPayload})
