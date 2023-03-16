@@ -578,6 +578,7 @@ function App() {
                 Transactions={TransactionsList} 
                 SetTransactions={SetTransactionsList} 
                 showModalSuccessTransaction={() => setmodalSuccessTransaction(true)} 
+                darkMode={darkMode} 
               />} />
               <Route path="/profile" element={<Profile 
                 User={state.user} 
