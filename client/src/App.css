@@ -72,6 +72,11 @@ textarea {
   background-color: #432a1e !important;
   border-color: #432a1e !important;
 }
+.custom-btn-outline-primary-dark-mode {
+  background-color:#F6E6DA !important;
+  color: #974A4A !important;
+  border-color: #974A4A !important;
+}
 .custom-btn-outline-primary {
   color: #613D2B !important;
   border-color: #613D2B !important;
