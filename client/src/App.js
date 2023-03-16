@@ -54,7 +54,9 @@ function App() {
       setAuthToken(localStorage.token);
       checkUser();
     } else {
-      setIsLoading(false)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 3000);
     }
   }, []);
 
@@ -67,12 +69,16 @@ function App() {
         type: 'USER_SUCCESS',
         payload,
       });
-      setIsLoading(false)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 3000);
     } catch (error) {
       dispatch({
         type: 'AUTH_ERROR',
       });
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 3000);
       return
     }
   };
@@ -405,7 +411,7 @@ function App() {
 
   return (
     <>
-      {isLoading ? null :
+      {isLoading ? <img src="/images/icon-logo.webp" alt="WaysBeans" style={{ height:"4rem" }}/> :
         <>
           <SuccessUpdateProfileModal
               show={modalSuccessUpdateProfile} 
