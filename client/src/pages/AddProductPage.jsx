@@ -23,7 +23,7 @@ function AddProductPage(props) {
                   <Form.Label className="text-light fw-bold">Stock</Form.Label>
                 )
               }
-              <Form.Control type="number" onChange={props.AddProductOnChange} placeholder="Stock" value={props.formAddProduct.stock} name="stock" className="font-size-18px p-3 custom-form-input" required/>
+              <Form.Control type="number" onChange={props.AddProductOnChange} placeholder="Stock" value={props.formAddProduct.stock} name="stock" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
             <Form.Group className="mb-4" controlId="formPrice">
               {
@@ -31,7 +31,7 @@ function AddProductPage(props) {
                   <Form.Label className="text-light fw-bold">Price</Form.Label>
                 )
               }
-              <Form.Control type="number" onChange={props.AddProductOnChange} placeholder="Price" value={props.formAddProduct.price} name="price" className="font-size-18px p-3 custom-form-input" required/>
+              <Form.Control type="number" onChange={props.AddProductOnChange} placeholder="Price" value={props.formAddProduct.price} name="price" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
             <Form.Group className="mb-4" controlId="formDescription">
               {
@@ -39,7 +39,7 @@ function AddProductPage(props) {
                   <Form.Label className="text-light fw-bold">Description</Form.Label>
                 )
               }
-              <Form.Control as="textarea" onChange={props.AddProductOnChange} placeholder="Product Description" value={props.formAddProduct.description} name="description" className="font-size-18px p-3 custom-form-input" rows={4} required/>
+              <Form.Control as="textarea" onChange={props.AddProductOnChange} placeholder="Product Description" value={props.formAddProduct.description} name="description" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} rows={4} required/>
             </Form.Group>
             {
               props.darkMode && (

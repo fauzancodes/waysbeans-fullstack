@@ -15,7 +15,7 @@ function UpdateProfilePage(props) {
                   <Form.Label className="text-light fw-bold">Phone Number</Form.Label>
                 )
               }
-              <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Phone" value={props.formUpdateProfile.phone} name="phone" className="font-size-18px p-3 custom-form-input" required/>
+              <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Phone" value={props.formUpdateProfile.phone} name="phone" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
             <Form.Group className="mb-4" controlId="formAddress">
               {
@@ -23,7 +23,7 @@ function UpdateProfilePage(props) {
                   <Form.Label className="text-light fw-bold">Address & Postcode</Form.Label>
                 )
               }
-              <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Address & Postcode" value={props.formUpdateProfile.address} name="address" className="font-size-18px p-3 custom-form-input" required/>
+              <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Address & Postcode" value={props.formUpdateProfile.address} name="address" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
             {
               props.darkMode && (
