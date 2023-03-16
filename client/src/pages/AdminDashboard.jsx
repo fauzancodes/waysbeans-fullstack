@@ -32,14 +32,14 @@ export default function ProductDetails(props) {
               {
                 TransactionsSorted.map((transaction, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{transaction.name}</td>
-                    <td>{transaction.email}</td>
-                    <td>{transaction.phone}</td>
-                    <td>{transaction.address}</td>
-                    <td>{transaction.products.map((product, index) => <div>{`${product.product_name} x${product.order_quantity}. `}</div>)}</td>
-                    <td>{transaction.total_quantity}</td>
-                    <td>{transaction.total_price}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{index + 1}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.name}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.email}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.phone}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.address}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.products.map((product, index) => <div>{`${product.product_name} x${product.order_quantity}. `}</div>)}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_quantity}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_price}</td>
                     {
                       transaction.status === "pending" && <td style={{ color:"#FF9900" }}>{transaction.status}</td>
                     }
