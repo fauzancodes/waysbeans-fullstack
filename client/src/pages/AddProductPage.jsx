@@ -17,7 +17,7 @@ function AddProductPage(props) {
               }
               <Form.Control type="text" onChange={props.AddProductOnChange} placeholder="Name" value={props.formAddProduct.name} name="name" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formStock">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formStock">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Stock</Form.Label>
@@ -25,7 +25,7 @@ function AddProductPage(props) {
               }
               <Form.Control type="number" onChange={props.AddProductOnChange} placeholder="Stock" value={props.formAddProduct.stock} name="stock" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formPrice">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formPrice">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Price</Form.Label>
@@ -33,7 +33,7 @@ function AddProductPage(props) {
               }
               <Form.Control type="number" onChange={props.AddProductOnChange} placeholder="Price" value={props.formAddProduct.price} name="price" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formDescription">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formDescription">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Description</Form.Label>

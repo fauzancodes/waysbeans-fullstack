@@ -9,7 +9,7 @@ function UpdateProfilePage(props) {
         <Col xs={12} lg={6} className="mb-4 animate__animated animate__slideInLeft">
           <h1 className={`fw-bold ${props.darkMode ? "text-light" : "custom-text-primary"} mb-5`}  style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>Update Profile</h1>
           <Form onSubmit={props.UpdateProfileOnSubmit}>
-            <Form.Group className="mb-4" controlId="formPhone">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formPhone">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Phone Number</Form.Label>
@@ -17,7 +17,7 @@ function UpdateProfilePage(props) {
               }
               <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Phone" value={props.formUpdateProfile.phone} name="phone" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formAddress">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formAddress">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Address & Postcode</Form.Label>

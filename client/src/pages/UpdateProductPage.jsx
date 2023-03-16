@@ -12,7 +12,7 @@ function UpdateProductPage(props) {
             <Form.Group className="mb-4 d-none" controlId="formId">
               <Form.Control type="text" onChange={props.UpdateProductOnChange} placeholder="Id" value={props.formUpdateProduct.id} name="id" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formName">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formName">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Name</Form.Label>
@@ -20,7 +20,7 @@ function UpdateProductPage(props) {
               }
               <Form.Control type="text" onChange={props.UpdateProductOnChange} placeholder="Name" value={props.formUpdateProduct.name} name="name" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formStock">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formStock">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Stock</Form.Label>
@@ -28,7 +28,7 @@ function UpdateProductPage(props) {
               }
               <Form.Control type="number" onChange={props.UpdateProductOnChange} placeholder="Stock" value={props.formUpdateProduct.stock} name="stock" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formPrice">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formPrice">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Price</Form.Label>
@@ -36,7 +36,7 @@ function UpdateProductPage(props) {
               }
               <Form.Control type="number" onChange={props.UpdateProductOnChange} placeholder="Price" value={props.formUpdateProduct.price} name="price" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formDescription">
+            <Form.Group className={props.darkMode ? "mb-2" : "mb-4"} controlId="formDescription">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Description</Form.Label>
