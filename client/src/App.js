@@ -590,6 +590,7 @@ function App() {
                 setImageUrl={setProfilePhotoPreview} 
                 formUpdateProfile={formUpdateProfile} 
                 setformUpdateProfile={setformUpdateProfile} 
+                darkMode={darkMode} 
               />} />
               <Route path="/update-profile" element={<UpdateProfilePage 
                 formUpdateProfile={formUpdateProfile} 

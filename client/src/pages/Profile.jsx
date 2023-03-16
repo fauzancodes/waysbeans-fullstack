@@ -35,7 +35,7 @@ export default function Profile(props) {
       <Container>
         <Row className="custom-margin-top mx-5 responsive-margin-x justify-content-between">
           <Col xs={12} lg={6} className="mb-5 animate__animated animate__slideInLeft">
-            <h2 className="product-title mb-4 font-size-24px">My Profile</h2>
+            <h2 className={`${props.darkMode ? "fw-bold text-light text-center" : "product-title"} mb-4 font-size-24px`} style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>My Profile</h2>
             <div className="d-flex flex-wrap align-items-start">
               {
                 props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
@@ -46,23 +46,23 @@ export default function Profile(props) {
               }
               <input type="file" id="profile-picture-file" className="d-none"></input>
               <div>
-                <h5 className="product-title font-size-18px">Full Name</h5>
-                <div className="font-size-18px mb-4">{props.User.name}</div>
-                <h5 className="product-title font-size-18px">Email</h5>
-                <div className="font-size-18px mb-4">{props.User.email}</div>
+                <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Full Name</h5>
+                <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.User.name}</div>
+                <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Email</h5>
+                <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.User.email}</div>
                 {
                   props.Profiles.find(profile => profile.user_id === props.User.id)?.phone !== "" && (
                     <>
-                      <h5 className="product-title font-size-18px">Phone</h5>
-                      <div className="font-size-18px mb-4">{props.Profiles.find(profile => profile.user_id === props.User.id)?.phone}</div>
+                      <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Phone</h5>
+                      <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.Profiles.find(profile => profile.user_id === props.User.id)?.phone}</div>
                     </>
                   )
                 }
                 {
                   props.Profiles.find(profile => profile.user_id === props.User.id)?.address !== "" && (
                     <>
-                      <h5 className="product-title font-size-18px">Address</h5>
-                      <div className="font-size-18px mb-4">{props.Profiles.find(profile => profile.user_id === props.User.id)?.address}</div>
+                      <h5 className={`${props.darkMode ? "fw-bold" : "product-title"} font-size-18px`} style={{ color: props.darkMode && "F6E6DA" }}>Address</h5>
+                      <div className={`font-size-18px mb-4 ${props.darkMode && "text-light"}`}>{props.Profiles.find(profile => profile.user_id === props.User.id)?.address}</div>
                     </>
                   )
                 }
@@ -70,7 +70,7 @@ export default function Profile(props) {
             </div>
           </Col>
           <Col xs={12} lg={6} className="animate__animated animate__slideInRight">
-            <h2 className="product-title mb-4 font-size-24px">My Transaction</h2>
+            <h2 className={`${props.darkMode ? "fw-bold text-light text-center" : "product-title"} mb-4 font-size-24px`} style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>My Transaction</h2>
             {
               props.Transactions.filter(transaction => transaction.user?.id === props.User.id).length > 0 ? (
                 props.Transactions.filter(transaction => transaction.user?.id === props.User.id).map((item) => (
