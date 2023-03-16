@@ -412,7 +412,7 @@ function App() {
   return (
     <>
       {isLoading ? (
-          <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+          <div className="d-flex justify-content-center align-items-center" style={{width:"100vw",height:"100vh"}}>
             <img src="/images/icon-logo.webp" alt="WaysBeans" style={{ height:"4rem" }}/>
           </div>
         ) :
