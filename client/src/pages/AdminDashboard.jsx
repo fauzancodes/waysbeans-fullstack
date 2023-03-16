@@ -16,19 +16,19 @@ export default function ProductDetails(props) {
       <h1 className={`custom-margin-top ${props.darkMode ? "fw-bold text-light text-center" : "product-title"} font-size-36px mb-5`}style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>Income Transaction</h1>
       {
         TransactionsSorted.length > 0 ? (
-          <Table responsive bordered hover className="mx-auto animate__animated animate__fadeIn">
+          <Table responsive bordered hover className="mx-auto w-100 animate__animated animate__fadeIn">
             <thead style={{ backgroundColor:"#E5E5E5" }}>
               <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Products Order</th>
-                <th>Date</th>
-                <th>Total Quantity</th>
-                <th>Total Price</th>
-                <th>Status</th>
+                <th className="text-center">No.</th>
+                <th className="text-center">Name</th>
+                <th className="text-center">Email</th>
+                <th className="text-center">Phone Number</th>
+                <th className="text-center">Address</th>
+                <th className="text-center">Products Order</th>
+                <th className="text-center">Date</th>
+                <th className="text-center">Total Quantity</th>
+                <th className="text-center">Total Price</th>
+                <th className="text-center">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@ export default function ProductDetails(props) {
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.email}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.phone}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.address}</td>
-                    <td>{transaction.products.map((product, index) => <div style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{`(${index + 1}) ${product.product_name}, Rp${product.product_price}, x${product.order_quantity}.`}</div>)}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.products.map((product, index) => <div style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{`(${index + 1}) ${product.product_name}, Rp${product.product_price}, x${product.order_quantity}.`}</div>)}</td>
                     <td>{`${new Date(transaction.date).getDate()} ${months[new Date(transaction.date).getMonth()]} ${new Date(transaction.date).getFullYear()}`}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_quantity}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_price}</td>

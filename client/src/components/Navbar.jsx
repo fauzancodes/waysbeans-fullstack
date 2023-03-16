@@ -56,6 +56,7 @@ export default function NavbarSection(props) {
                           <img src="/images/icon-dark-mode.webp" alt="Dark Mode" className="me-2" style={{ width:"1.5rem" }}/>
                           {`${ props.darkMode ? "Light" : "Dark"} Mode`}
                         </Dropdown.Item>
+                        <Dropdown.Divider/>
                         <Dropdown.Item onClick={() => navigate("/profile")} className="fw-bold d-flex align-items-center py-2">
                           <img src="/images/icon-profile.webp" alt="Profile" className="me-2" style={{ width:"1.5rem" }}/>
                           Profile
@@ -78,6 +79,7 @@ export default function NavbarSection(props) {
                         <img src="/images/icon-dark-mode.webp" alt="Dark Mode" className="me-2" style={{ width:"1.5rem" }}/>
                         {`${ props.darkMode ? "Light" : "Dark"} Mode`}
                       </Dropdown.Item>
+                      <Dropdown.Divider/>
                       <Dropdown.Item onClick={() => navigate("/add-product-page")} className="fw-bold d-flex align-items-center py-2">
                         <img src="/images/icon-coffee-bean.webp" alt="Profile" className="me-2" style={{ width:"1.5rem" }}/>
                         Add Product
