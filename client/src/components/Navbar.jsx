@@ -17,6 +17,7 @@ export default function NavbarSection(props) {
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
+            <Button onClick={props.toggleDarkMode} variant="dark" className="fw-bold me-3">Login</Button>
             {
               props.isLogin === true ? (
                 props.isAdmin === false ? (

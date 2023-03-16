@@ -83,6 +83,11 @@ function App() {
     }
   };
 
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   const [ProductsList, SetProductsList] = useState([]);
   const [UserCarts, SetUserCarts] = useState([]);
   const [UserProfiles, SetUserProfiles] = useState([]);
@@ -542,6 +547,7 @@ function App() {
               });
               settoastSuccessLogout(true);
             }} 
+            toggleDarkMode={toggleDarkMode}
           />
           <Routes>
             <Route path="/" element={state.user.is_admin ? <AdminDashboard Transactions={TransactionsList} /> : <Home Products={ProductsList} />} />
