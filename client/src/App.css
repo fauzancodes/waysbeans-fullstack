@@ -21,11 +21,11 @@ html, body {
   border-radius: 5px;
 }
 ::placeholder {
-  color: rgba(97, 61, 43, 0.5) !important;
+  color: rgba(97, 61, 43, 0.75) !important;
   opacity: 1 !important;
 }
 :-ms-input-placeholder, ::-ms-input-placeholder {
-  color: rgba(97, 61, 43, 0.5) !important;
+  color: rgba(97, 61, 43, 0.75) !important;
 }
 td, th {
   border: 1px solid #828282 !important;
