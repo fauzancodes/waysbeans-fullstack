@@ -597,6 +597,7 @@ function App() {
                 UpdateProfileOnChange={(e) => formUpdateProfileHandleOnChange(e)} 
                 UpdateProfileOnSubmit={(e) => formUpdateProfileHandleOnSubmit.mutate(e)} 
                 imageUrl={profilePhotoPreview} 
+                darkMode={darkMode} 
               />} />
             </Route>
             <Route path="/" element={<AdminRoute isLogin={state.isLogin} isAdmin={state.user.is_admin} />}>

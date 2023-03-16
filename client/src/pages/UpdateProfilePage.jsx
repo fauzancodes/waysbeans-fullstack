@@ -7,9 +7,14 @@ function UpdateProfilePage(props) {
     <Container>
       <Row className="custom-margin-top justify-content-between mx-5 responsive-margin-x">
         <Col xs={12} lg={6} className="mb-4 animate__animated animate__slideInLeft">
-          <h1 className="fw-bold custom-text-primary mb-5">Update Profile</h1>
+          <h1 className={`fw-bold ${props.darkMode ? "text-light" : "custom-text-primary"} mb-5`}  style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>Update Profile</h1>
           <Form onSubmit={props.UpdateProfileOnSubmit}>
             <Form.Group className="mb-4" controlId="formName">
+              {
+                props.darkMode && (
+                  <Form.Label className="text-light fw-bold">Phone Number</Form.Label>
+                )
+              }
               <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Phone" value={props.formUpdateProfile.phone} name="phone" className="font-size-18px p-3 custom-form-input" required/>
             </Form.Group>
             <Form.Group className="mb-4" controlId="formStock">
