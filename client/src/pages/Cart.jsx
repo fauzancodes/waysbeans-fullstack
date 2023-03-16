@@ -40,7 +40,7 @@ export default function ProductDetails(props) {
   };
   const formPaymentHandleOnSubmit = useMutation(async (e) => {
     e.preventDefault();
-    if (props.UserCarts.some(cart => cart.order_quantity > props.Products.find(product => product.id === cart.product_id).stock)) {
+    if (props.UserCarts.filter(cart => cart.user_id === props.User.id).some(cart => cart.order_quantity > props.Products.find(product => product.id === cart.product_id).stock)) {
       setModalPaymentShow(false);
       setModalExceedStock(true);
     }
