@@ -40,7 +40,7 @@ function Home(props) {
                     </Card>
                   </Link>
                 ))
-              ) : <p className="opacity-50">There are no products to display.</p>
+              ) : <p className={`${props.darkMode && "text-light"} opacity-50`}>There are no products to display.</p>
             }
           </Col>
         </Row>

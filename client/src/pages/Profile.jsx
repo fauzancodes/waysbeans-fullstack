@@ -114,7 +114,7 @@ export default function Profile(props) {
                     </Col>
                   </Row>
                 ))
-              ) : <p className="opacity-50">You have never made any transaction.</p>
+              ) : <p className={`${props.darkMode && "text-light"} opacity-50`}>You have never made any transaction.</p>
             }
           </Col>
         </Row>

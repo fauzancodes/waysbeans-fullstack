@@ -115,7 +115,7 @@ export default function ProductDetails(props) {
                 }
               </tbody>
             </Table>
-          ) : <p className="opacity-50">There are no products to display.</p>
+          ) : <p className={`${props.darkMode && "text-light"} opacity-50`}>There are no products to display.</p>
         }
       </Container>
     </>
