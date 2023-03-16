@@ -423,7 +423,7 @@ function App() {
           </div>
         ) :
         <>
-          <style>{`body { background-color: ${darkMode ? "#333333" : "#ffffff"}; }`}</style>
+          <style>{`body { background-color: ${darkMode ? "#333333" : "#ffffff"}; color: ${darkMode ? "#ffffff" : "#000000"}; }`}</style>
           <SuccessUpdateProfileModal
               show={modalSuccessUpdateProfile} 
               onHide={() => setModalSuccessUpdateProfile(false)} 
