@@ -14,7 +14,7 @@ function Home(props) {
     <>
       <Container>
         <Row className="justify-content-center">
-          <Col xs={12} lg={11} className="custom-margin-top position-relative">
+          <Col xs={12} lg={11} className="custom-margin-top position-relative animate__animated animate__bounceInDown">
             <div id="title" className="p-5 col-12 col-lg-11 position-relative" style={{ backgroundColor:"#DBB699" }}>
               <img src="/images/cover-title.webp" alt="WaysBeans" style={{ height:"8rem" }}/>
               <h1 className="mt-2 font-size-24px">BEST QUALITY COFFEE BEANS</h1>
@@ -27,7 +27,7 @@ function Home(props) {
             {
               Products.length > 0 ? (
                 Products.map((item) => (
-                  <Link to={`/product-details/${item.id}`} key={item.id} className="text-decoration-none mb-5">
+                  <Link to={`/product-details/${item.id}`} key={item.id} className="text-decoration-none mb-5 animate__animated animate__bounceIn">
                     <Card className="border-0 product-card rounded-0">
                       <Card.Img variant="top" src={item.photo} alt={item.name} className="w-100" style={{ borderRadius:"0", objectFit:"cover" }} />
                       <Card.Body>
