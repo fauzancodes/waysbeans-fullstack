@@ -7,7 +7,7 @@ html, body {
   overflow-x: hidden !important;
 }
 ::-webkit-scrollbar {
-  display: none;
+  width: 12px;
 }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-horizontal {
   background-color: #974A4A;
