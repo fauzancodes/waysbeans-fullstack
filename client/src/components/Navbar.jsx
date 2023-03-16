@@ -28,7 +28,7 @@ export default function NavbarSection(props) {
               props.isLogin === true ? (
                 props.isAdmin === false ? (
                   <>
-                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline">
+                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer", backgroundColor: props.darkMode ? "#F6E6DA" : "transparent" }} className="position-relative d-inline">
                       <img src="/images/icon-cart.webp" alt="Cart" className="me-5"/>
                       {
                         props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 && (
