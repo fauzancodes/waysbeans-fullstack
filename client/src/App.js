@@ -413,8 +413,8 @@ function App() {
     <>
       {isLoading ? (
           <div className="d-flex justify-content-center align-items-center" style={{width:"100vw",height:"100vh"}}>
-            <img id="loader" src="/images/icon-logo.webp" alt="WaysBeans" className="position-absolute"/>
-            <img src="/images/icon-logo.webp" alt="WaysBeans" className="position-relative"/>
+            <img id="loader" src="/images/icon-logo.webp" alt="WaysBeans" className="w-75 position-absolute"/>
+            <img src="/images/icon-logo.webp" alt="WaysBeans" className="w-75 position-relative"/>
           </div>
         ) :
         <>
