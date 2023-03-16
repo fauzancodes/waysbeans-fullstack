@@ -7,14 +7,17 @@ html, body {
   overflow-x: hidden !important;
 }
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-horizontal {
-  background-color: #974A4A;
-  border-radius: 5px;
+  background-color: #F6E6DA;
 }
 ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb-horizontal {
   background-color: #613D2B;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar-thumb-horizontal:hover {
+  background-color: #432a1e;
   border-radius: 5px;
 }
 ::placeholder {
