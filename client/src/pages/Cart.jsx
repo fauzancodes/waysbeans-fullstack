@@ -342,7 +342,7 @@ export default function ProductDetails(props) {
                     </div>
                   </Col>
                 ))
-              ) : <p className={`${props.darkMode && "text-light"} "opacity-50"`}>There are no items in your cart.</p>
+              ) : <p className={`${props.darkMode && "text-light"} opacity-50`}>There are no items in your cart.</p>
             }
             </Col>
             {
