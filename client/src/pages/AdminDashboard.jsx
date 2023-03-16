@@ -14,7 +14,7 @@ export default function ProductDetails(props) {
       <h1 className="custom-margin-top product-title font-size-36px mb-5">Income Transaction</h1>
       {
         TransactionsSorted.length > 0 ? (
-          <Table responsive bordered hover className="mx-auto animate__animated animate__fadeIn">
+          <Table responsive bordered hover variant={props.darkMode ? "dark" : "light"} className="mx-auto animate__animated animate__fadeIn">
             <thead style={{ backgroundColor:"#E5E5E5" }}>
               <tr>
                 <th>No.</th>

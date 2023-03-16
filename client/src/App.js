@@ -552,7 +552,7 @@ function App() {
             darkMode={darkMode} 
           />
           <Routes>
-            <Route path="/" element={state.user.is_admin ? <AdminDashboard Transactions={TransactionsList} /> : <Home Products={ProductsList} />} />
+            <Route path="/" element={state.user.is_admin ? <AdminDashboard Transactions={TransactionsList} darkMode={darkMode} /> : <Home Products={ProductsList} />} />
             <Route path="/product-details/:id" element={<ProductDetails 
               isLogin={state.isLogin} 
               showModalLogin={() => setModalLoginShow(true)} 

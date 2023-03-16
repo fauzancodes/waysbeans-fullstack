@@ -20,7 +20,7 @@ function UpdateProfilePage(props) {
             <Form.Group className="mb-4" controlId="formAddress">
               {
                 props.darkMode && (
-                  <Form.Label className="text-light fw-bold">Address</Form.Label>
+                  <Form.Label className="text-light fw-bold">Address & Postcode</Form.Label>
                 )
               }
               <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Address & Postcode" value={props.formUpdateProfile.address} name="address" className="font-size-18px p-3 custom-form-input" required/>
