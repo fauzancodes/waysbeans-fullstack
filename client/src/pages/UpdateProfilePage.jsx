@@ -9,7 +9,7 @@ function UpdateProfilePage(props) {
         <Col xs={12} lg={6} className="mb-4 animate__animated animate__slideInLeft">
           <h1 className={`fw-bold ${props.darkMode ? "text-light" : "custom-text-primary"} mb-5`}  style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>Update Profile</h1>
           <Form onSubmit={props.UpdateProfileOnSubmit}>
-            <Form.Group className="mb-4" controlId="formName">
+            <Form.Group className="mb-4" controlId="formPhone">
               {
                 props.darkMode && (
                   <Form.Label className="text-light fw-bold">Phone Number</Form.Label>
@@ -17,9 +17,19 @@ function UpdateProfilePage(props) {
               }
               <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Phone" value={props.formUpdateProfile.phone} name="phone" className="font-size-18px p-3 custom-form-input" required/>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="formStock">
+            <Form.Group className="mb-4" controlId="formAddress">
+              {
+                props.darkMode && (
+                  <Form.Label className="text-light fw-bold">Address</Form.Label>
+                )
+              }
               <Form.Control type="text" onChange={props.UpdateProfileOnChange} placeholder="Address & Postcode" value={props.formUpdateProfile.address} name="address" className="font-size-18px p-3 custom-form-input" required/>
             </Form.Group>
+            {
+              props.darkMode && (
+                <Form.Label className="text-light fw-bold">Photo</Form.Label>
+              )
+            }
             <div id="profile-photo-container" className="font-size-18px p-3 py-2 custom-form-input rounded w-50">
               <label htmlFor="profile-photo" className="d-flex justify-content-between align-items-center" style={{ color:"rgba(97, 61, 43, 0.5)",cursor:"pointer" }}>
                 Profile Photo
