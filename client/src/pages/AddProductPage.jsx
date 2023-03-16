@@ -15,7 +15,7 @@ function AddProductPage(props) {
                   <Form.Label className="text-light fw-bold">Name</Form.Label>
                 )
               }
-              <Form.Control type="text" onChange={props.AddProductOnChange} placeholder="Name" value={props.formAddProduct.name} name="name" className="font-size-18px p-3 custom-form-input" required/>
+              <Form.Control type="text" onChange={props.AddProductOnChange} placeholder="Name" value={props.formAddProduct.name} name="name" className={`font-size-18px p-3 custom-form-input ${props.darkMode && "text-light"}`} required/>
             </Form.Group>
             <Form.Group className="mb-4" controlId="formStock">
               {
