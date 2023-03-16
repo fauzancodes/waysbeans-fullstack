@@ -11,8 +11,14 @@ export default function NavbarSection(props) {
       <Navbar collapseOnSelect expand="lg" fixed="top" style={{ backgroundColor: props.darkMode ? "#1d1d1d" : "#f5f5f5", boxShadow: "0 0.625rem 1.875rem rgba(0, 0, 0, 0.25)" }}>
         <Container>
           <Link to="/">
-            <Navbar.Brand style={{ backgroundColor: props.darkMode ? "#F6E6DA" : "none" }}>
-              <img src="/images/icon-logo.webp" alt="WaysBeans" style={{ height:"4rem" }}/>
+            <Navbar.Brand>
+              {
+                props.darkMode ? (
+                  <img src="/images/icon-logo-dark-mode.webp" alt="WaysBeans" style={{ height:"4rem" }}/>
+                ) : (
+                  <img src="/images/icon-logo.webp" alt="WaysBeans" style={{ height:"4rem" }}/>
+                )
+              }
             </Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
