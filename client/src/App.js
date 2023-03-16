@@ -83,11 +83,10 @@ function App() {
     }
   };
 
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("waysbeansdarkmode") === true ? true : false
-  );
+  const [darkMode, setDarkMode] = useState(false);
+  setDarkMode(localStorage.getItem("waysbeansdarkmode") === true ? true : false)
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
+    setDarkMode(!darkMode);
     localStorage.setItem("waysbeansdarkmode", darkMode);
   };
 
