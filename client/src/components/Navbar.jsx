@@ -94,7 +94,7 @@ export default function NavbarSection(props) {
                 </>
               )
             }
-            <Button onClick={props.toggleDarkMode} variant={ props.darkMode ? "light" : "dark" } className="custom-btn-utilities fw-bold">{`${ props.darkMode ? "Light" : "Dark"} Mode`}</Button>
+            <Button id="dark-mode-button" onClick={props.toggleDarkMode} variant={ props.darkMode ? "light" : "dark" } className="custom-btn-utilities fw-bold">{`${ props.darkMode ? "Light" : "Dark"} Mode`}</Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -173,6 +173,9 @@ textarea {
   #loader-container img {
     width: 75%;
   }
+  #dark-mode-button {
+    padding-top: 1rem;
+  }
 }
 
 @media (min-width: 992px) {
