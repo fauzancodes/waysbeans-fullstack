@@ -26,7 +26,7 @@
   {
     "id":4,
     "name":"RWANDA Beans",
-    "stock":120,
+    "stock":20,
     "price":150000,
     "description":"This is RWANDA Beans. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut feugiat ex. Proin auctor interdum ex id aliquam. Etiam vitae magna dui. Ut mollis varius velit, ut posuere nunc venenatis id. Ut quis imperdiet enim. Nam magna diam, vulputate lacinia lacinia vel, ornare scelerisque ante. Quisque neque sem, finibus non neque sed, pellentesque commodo justo. Proin in maximus dolor. Sed at massa sit amet elit ultrices scelerisque. Aliquam ultricies arcu eros, eget varius erat aliquam at. Nunc ornare diam at augue interdum laoreet.",
     "photo":"/images/product-rwanda.webp"
