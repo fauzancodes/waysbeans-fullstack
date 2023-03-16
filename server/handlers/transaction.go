@@ -319,6 +319,8 @@ func SendMail(status string, transaction models.Transaction) {
         <li>Total Payment: Rp.%s</li>
         <li>Status : <b>%s</b></li>
       </ul>
+			<br/><br/>
+			<h5>&copy 2023. <a href="https://waysbeans-coffee.vercel.app">WaysBeans</a></h5>
       </body>
     </html>`, transaction.Name, transaction.Email, transaction.Phone, transaction.Address, productsTransaction, totalQuantity, totalPrice, status))
 

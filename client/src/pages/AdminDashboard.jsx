@@ -9,6 +9,8 @@ export default function ProductDetails(props) {
     TransactionsSorted.sort((a, b) => b.date - a.date);
   }
 
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
   return (
     <Container>
       <h1 className={`custom-margin-top ${props.darkMode ? "fw-bold text-light text-center" : "product-title"} font-size-36px mb-5`}style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>Income Transaction</h1>
@@ -23,6 +25,7 @@ export default function ProductDetails(props) {
                 <th>Phone Number</th>
                 <th>Address</th>
                 <th>Products Order</th>
+                <th>Date</th>
                 <th>Total Quantity</th>
                 <th>Total Price</th>
                 <th>Status</th>
@@ -37,7 +40,8 @@ export default function ProductDetails(props) {
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.email}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.phone}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.address}</td>
-                    <td>{transaction.products.map((product, index) => <div style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{`${product.product_name} x${product.order_quantity}. `}</div>)}</td>
+                    <td>{transaction.products.map((product, index) => <div style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{`(${index + 1}) ${product.product_name}, Rp${product.product_price}, x${product.order_quantity}.`}</div>)}</td>
+                    <td>{`${new Date(transaction.date).getDate()} ${months[new Date(transaction.date).getMonth()]} ${new Date(transaction.date).getFullYear()}`}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_quantity}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_price}</td>
                     {
