@@ -411,7 +411,11 @@ function App() {
 
   return (
     <>
-      {isLoading ? <img src="/images/icon-logo.webp" alt="WaysBeans" style={{ height:"4rem" }}/> :
+      {isLoading ? (
+          <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+            <img src="/images/icon-logo.webp" alt="WaysBeans" style={{ height:"4rem" }}/>
+          </div>
+        ) :
         <>
           <SuccessUpdateProfileModal
               show={modalSuccessUpdateProfile} 
