@@ -286,6 +286,10 @@ func SendMail(status string, transaction models.Transaction) {
     var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
     var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
 
+		var productsTransaction string
+		for index, product := range transaction.ProductTransaction {
+			productsTransaction += strconv.Itoa(index + 1) + ") " + product.ProductName + " x" + strconv.Itoa(product.OrderQuantity) + " "
+		}
     var totalQuantity = strconv.Itoa(transaction.TotalQuantity)
     var totalPrice = strconv.Itoa(transaction.TotalPrice)
 
@@ -302,14 +306,19 @@ func SendMail(status string, transaction models.Transaction) {
       <title>Document</title>
       </head>
       <body>
-      <h2>Product payment :</h2>
+      <h2>Product Payment</h2>
       <ul style="list-style-type:none;">
+				<li>Name : %s</li>
+				<li>Email : %s</li>
+				<li>Phone : %s</li>
+				<li>Address : %s</li>
+				<li>Products : %s</li>
         <li>Total Quantity : %s</li>
-        <li>Total payment: Rp.%s</li>
+        <li>Total Payment: Rp.%s</li>
         <li>Status : <b>%s</b></li>
       </ul>
       </body>
-    </html>`, totalQuantity, totalPrice, status))
+    </html>`, transaction.Name, transaction.Email, transaction.Phone, transaction.Address, productsTransaction, totalQuantity, totalPrice, status))
 
     dialer := gomail.NewDialer(
       CONFIG_SMTP_HOST,
