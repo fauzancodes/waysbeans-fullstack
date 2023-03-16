@@ -6,6 +6,17 @@
 html, body {
   overflow-x: hidden !important;
 }
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-track-horizontal {
+  background-color: #974A4A;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb-horizontal {
+  background-color: #613D2B;
+  border-radius: 5px;
+}
 ::placeholder {
   color: rgba(97, 61, 43, 0.5) !important;
   opacity: 1 !important;
