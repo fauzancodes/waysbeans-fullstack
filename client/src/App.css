@@ -3,9 +3,6 @@
   box-sizing: border-box;
   transition: all 0.25s ease-in;
 }
-html, body {
-  overflow-x: hidden !important;
-}
 ::-webkit-scrollbar {
   width: 10px;
 }
