@@ -90,11 +90,11 @@ export default function NavbarSection(props) {
               ) : (
                 <>
                   <Button onClick={props.showModalLogin} variant="outline-primary" className={`custom-btn-utilities ${props.darkMode ? "custom-btn-outline-primary-dark-mode" : "custom-btn-outline-primary"} fw-bold me-3`}>Login</Button>
-                  <Button onClick={props.showModalRegister} variant="primary" className="custom-btn-utilities custom-btn-primary fw-bold">Register</Button>
+                  <Button onClick={props.showModalRegister} variant="primary" className="custom-btn-utilities custom-btn-primary fw-bold me-3">Register</Button>
                 </>
               )
             }
-            <Button onClick={props.toggleDarkMode} variant={ props.darkMode ? "light" : "dark" } className="custom-btn-utilities fw-bold me-3">{`${ props.darkMode ? "Light" : "Dark"} Mode`}</Button>
+            <Button onClick={props.toggleDarkMode} variant={ props.darkMode ? "light" : "dark" } className="custom-btn-utilities fw-bold">{`${ props.darkMode ? "Light" : "Dark"} Mode`}</Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
