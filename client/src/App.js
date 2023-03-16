@@ -606,6 +606,7 @@ function App() {
                 AddProductOnChange={(e) => formAddProductHandleOnChange(e)} 
                 AddProductOnSubmit={(e) => formAddProductHandleOnSubmit.mutate(e)} 
                 imageUrl={photoPreview} 
+                darkMode={darkMode} 
               />} />
               <Route path="/update-product-page/:id" element={<UpdateProductPage 
                 formUpdateProduct={formUpdateProduct} 
@@ -613,6 +614,7 @@ function App() {
                 UpdateProductOnSubmit={(e) => formUpdateProductHandleOnSubmit.mutate(e)} 
                 Products={ProductsList} 
                 imageUrl={photoPreview} 
+                darkMode={darkMode} 
               />} />
               <Route path="/list-product" element={<ListProduct 
                 Products={ProductsList} 
@@ -620,6 +622,7 @@ function App() {
                 formUpdateProduct={formUpdateProduct} 
                 setformUpdateProduct={setformUpdateProduct} 
                 setImageUrl={setPhotoPreview} 
+                darkMode={darkMode} 
               />} />
             </Route>
           </Routes>
