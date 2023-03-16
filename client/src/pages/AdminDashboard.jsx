@@ -11,10 +11,10 @@ export default function ProductDetails(props) {
 
   return (
     <Container>
-      <h1 className="custom-margin-top product-title font-size-36px mb-5">Income Transaction</h1>
+      <h1 className={`custom-margin-top ${props.darkMode ? "fw-bold text-light text-center" : "product-title"} font-size-36px mb-5`}style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }} >Income Transaction</h1>
       {
         TransactionsSorted.length > 0 ? (
-          <Table responsive bordered hover variant={props.darkMode ? "dark" : "light"} className="mx-auto animate__animated animate__fadeIn">
+          <Table responsive bordered hover className="mx-auto animate__animated animate__fadeIn">
             <thead style={{ backgroundColor:"#E5E5E5" }}>
               <tr>
                 <th>No.</th>
