@@ -27,7 +27,7 @@ export default function NavbarSection(props) {
               props.isLogin === true ? (
                 props.isAdmin === false ? (
                   <>
-                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline nav-lg">
+                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative nav-lg d-inline">
                       {
                         props.darkMode ? (
                           <img src="/images/icon-cart-dark-mode.webp" alt="Cart" className="me-5"/>
@@ -41,7 +41,7 @@ export default function NavbarSection(props) {
                         )
                       }
                     </div>
-                    <Dropdown className="d-inline nav-lg">
+                    <Dropdown className="nav-lg d-inline">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
                       {
                         props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
@@ -68,7 +68,7 @@ export default function NavbarSection(props) {
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline nav-sm">
+                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative nav-sm d-inline">
                       {
                         props.darkMode ? (
                           <img src="/images/icon-cart-dark-mode.webp" alt="Cart" className="me-5"/>
@@ -82,7 +82,7 @@ export default function NavbarSection(props) {
                         )
                       }
                     </div>
-                    <Dropdown className="d-inline nav-sm">
+                    <Dropdown className="nav-sm d-inline">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
                       {
                         props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
