@@ -27,7 +27,7 @@ export default function NavbarSection(props) {
               props.isLogin === true ? (
                 props.isAdmin === false ? (
                   <>
-                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative nav-lg d-inline">
+                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-nav-lg">
                       {
                         props.darkMode ? (
                           <img src="/images/icon-cart-dark-mode.webp" alt="Cart" className="me-5"/>
@@ -41,7 +41,7 @@ export default function NavbarSection(props) {
                         )
                       }
                     </div>
-                    <Dropdown className="nav-lg d-inline">
+                    <Dropdown className="d-nav-lg">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
                       {
                         props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
@@ -68,21 +68,7 @@ export default function NavbarSection(props) {
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative nav-sm d-inline">
-                      {
-                        props.darkMode ? (
-                          <img src="/images/icon-cart-dark-mode.webp" alt="Cart" className="me-5"/>
-                        ) : (
-                          <img src="/images/icon-cart.webp" alt="Cart" className="me-5"/>
-                        )
-                      }
-                      {
-                        props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 && (
-                          <span className="position-absolute bg-danger text-light d-flex justify-content-center align-items-center rounded-circle" style={{ width:"1.25rem", height:"1.25rem",top:"0",right:"50%" }}>{props.UserCarts.filter(cart => cart.user_id === props.User.id).length}</span> 
-                        )
-                      }
-                    </div>
-                    <Dropdown className="nav-sm d-inline">
+                    <Dropdown className="d-nav-sm">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
                       {
                         props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
@@ -109,6 +95,20 @@ export default function NavbarSection(props) {
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
+                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-nav-sm">
+                      {
+                        props.darkMode ? (
+                          <img src="/images/icon-cart-dark-mode.webp" alt="Cart" className="me-5"/>
+                        ) : (
+                          <img src="/images/icon-cart.webp" alt="Cart" className="me-5"/>
+                        )
+                      }
+                      {
+                        props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 && (
+                          <span className="position-absolute bg-danger text-light d-flex justify-content-center align-items-center rounded-circle" style={{ width:"1.25rem", height:"1.25rem",top:"0",right:"50%" }}>{props.UserCarts.filter(cart => cart.user_id === props.User.id).length}</span> 
+                        )
+                      }
+                    </div>
                   </>
                 ) : (
                   <Dropdown>

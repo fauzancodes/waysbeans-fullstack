@@ -6,6 +6,9 @@
 html, body {
   overflow-x: hidden;
 }
+#root > .container {
+  min-height: 100vh;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -176,8 +179,11 @@ textarea {
   #dark-mode-button {
     margin-top: 1rem;
   }
-  .nav-lg {
+  .d-nav-lg {
     display: none !important;
+  }
+  .d-nav-sm {
+    display: inline !important;
   }
 }
 
@@ -189,7 +195,10 @@ textarea {
   table {
     width: 75% !important;
   }
-  .nav-sm {
+  .d-nav-sm {
     display: none !important;
+  }
+  .d-nav-lg {
+    display: inline !important;
   }
 }

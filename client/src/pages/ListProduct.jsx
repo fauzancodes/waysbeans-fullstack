@@ -84,7 +84,7 @@ export default function ProductDetails(props) {
         <h1 className={`custom-margin-top ${props.darkMode ? "fw-bold text-light text-center" : "product-title"} font-size-36px mb-5`}style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>List Product</h1>
         {
           ProductsListSorted.length > 0 ? (
-            <Table responsive bordered hover className="mx-auto w-100 animate__animated animate__fadeIn">
+            <Table responsive bordered hover className="mx-auto w-100 animate__animated animate__fadeIn mb-5">
               <thead style={{ backgroundColor:"#E5E5E5" }}>
                 <tr>
                   <th>No.</th>
