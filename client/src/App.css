@@ -176,6 +176,9 @@ textarea {
   #dark-mode-button {
     margin-top: 1rem;
   }
+  .nav-lg {
+    display: none;
+  }
 }
 
 @media (min-width: 992px) {
@@ -185,5 +188,8 @@ textarea {
   }
   table {
     width: 75% !important;
+  }
+  .nav-sm {
+    display: none;
   }
 }

@@ -27,7 +27,7 @@ export default function NavbarSection(props) {
               props.isLogin === true ? (
                 props.isAdmin === false ? (
                   <>
-                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline">
+                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline nav-lg">
                       {
                         props.darkMode ? (
                           <img src="/images/icon-cart-dark-mode.webp" alt="Cart" className="me-5"/>
@@ -41,7 +41,48 @@ export default function NavbarSection(props) {
                         )
                       }
                     </div>
-                    <Dropdown className="d-inline">
+                    <Dropdown className="d-inline nav-lg">
+                      <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
+                      {
+                        props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
+                          <img id="profile-icon" src="/images/profile-picture-placeholder.webp" alt="Profile Icon Default" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
+                        ) : (
+                          <img id="profile-icon" src={props.Profiles.find(profile => profile.user_id === props.User.id).photo} alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
+                        )
+                      }
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu className="border-0" style={{ boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 20px rgba(0, 0, 0, 0.25)" }}>
+                        <Dropdown.Item onClick={props.toggleDarkMode} className="fw-bold d-flex align-items-center py-2">
+                          <img src="/images/icon-dark-mode.webp" alt="Dark Mode" className="me-2" style={{ width:"1.5rem" }}/>
+                          {`${ props.darkMode ? "Light" : "Dark"} Mode`}
+                        </Dropdown.Item>
+                        <Dropdown.Divider/>
+                        <Dropdown.Item onClick={() => navigate("/profile")} className="fw-bold d-flex align-items-center py-2">
+                          <img src="/images/icon-profile.webp" alt="Profile" className="me-2" style={{ width:"1.5rem" }}/>
+                          Profile
+                        </Dropdown.Item>
+                        <Dropdown.Divider/>
+                        <Dropdown.Item onClick={props.logout} className="fw-bold d-flex align-items-center py-2">
+                          <img src="/images/icon-logout.webp" alt="Profile" className="me-2" style={{ width:"1.5rem" }}/>
+                          Logout
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline nav-sm">
+                      {
+                        props.darkMode ? (
+                          <img src="/images/icon-cart-dark-mode.webp" alt="Cart" className="me-5"/>
+                        ) : (
+                          <img src="/images/icon-cart.webp" alt="Cart" className="me-5"/>
+                        )
+                      }
+                      {
+                        props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 && (
+                          <span className="position-absolute bg-danger text-light d-flex justify-content-center align-items-center rounded-circle" style={{ width:"1.25rem", height:"1.25rem",top:"0",right:"50%" }}>{props.UserCarts.filter(cart => cart.user_id === props.User.id).length}</span> 
+                        )
+                      }
+                    </div>
+                    <Dropdown className="d-inline nav-sm">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
                       {
                         props.Profiles === undefined || props.Profiles.find(profile => profile.user_id === props.User.id) === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === undefined || props.Profiles.find(profile => profile.user_id === props.User.id).photo === null || props.Profiles.find(profile => profile.user_id === props.User.id).photo === "" ? (
