@@ -177,7 +177,7 @@ textarea {
     margin-top: 1rem;
   }
   .nav-lg {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -190,6 +190,6 @@ textarea {
     width: 75% !important;
   }
   .nav-sm {
-    display: none;
+    display: none !important;
   }
 }
