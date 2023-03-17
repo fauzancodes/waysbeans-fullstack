@@ -40,8 +40,17 @@ export default function ProductDetails(props) {
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.email}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.phone}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.address}</td>
-                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.products.map((product, index) => <div style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{`(${index + 1}) ${product.product_name}, Rp${product.product_price}, x${product.order_quantity}.`}</div>)}</td>
-                    <td>{`${new Date(transaction.date).getDate()} ${months[new Date(transaction.date).getMonth()]} ${new Date(transaction.date).getFullYear()}`}</td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.products.map((product, index) => (
+                        <>
+                          <div className="mb-2" style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>
+                            {`(${index + 1}) ${product.product_name}, Rp${product.product_price}, x${product.order_quantity}`}
+                          </div>
+                        </>
+                      )}
+                    </td>
+                    <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>
+                      {`${new Date(transaction.date).getDate()} ${months[new Date(transaction.date).getMonth()]} ${new Date(transaction.date).getFullYear()}`}
+                    </td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_quantity}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.total_price}</td>
                     {
