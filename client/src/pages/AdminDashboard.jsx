@@ -46,7 +46,7 @@ export default function ProductDetails(props) {
                             {`(${index + 1}) ${product.product_name}, Rp${product.product_price}, x${product.order_quantity}`}
                           </div>
                         </>
-                      )}
+                      ))}
                     </td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>
                       {`${new Date(transaction.date).getDate()} ${months[new Date(transaction.date).getMonth()]} ${new Date(transaction.date).getFullYear()}`}
