@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const API = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: "https://waysbeans-coffee.up.railway.app/api/v1/",
+  // baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 export const setAuthToken = (token) => {

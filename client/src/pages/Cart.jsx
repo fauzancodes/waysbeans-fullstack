@@ -314,7 +314,7 @@ export default function ProductDetails(props) {
         </Modal.Body>
       </Modal>
       <Container>
-        <Row className="custom-margin-top mx-5 responsive-margin-x">
+        <Row className="custom-margin-top mx-5 responsive-margin-x mb-5">
           <h1 className={`px-0 ${props.darkMode ? "fw-bold text-light text-center" : "product-title"}`} style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>My Cart</h1>
           <p className={`px-0 font-size-18px ${props.darkMode ? "text-light" : "custom-text-primary"}`}>Review Your Order</p>
           <Row className="justify-content-between align-items-start px-0">

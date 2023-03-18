@@ -2,6 +2,7 @@ import { Container, Col, Row, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Home(props) {
+  document.title = "WaysBeans | Best Quality Coffee Beans";
   let Products = [];
   if (props.Products !== undefined) {
     Products = [...props.Products];
