@@ -16,15 +16,14 @@ export default function ProductDetails(props) {
     if (props.isLogin) {
       if (Product.stock > 0) {
         if (props.UserCarts.filter(cart => cart.user_id === props.User.id).some(item => item.product_id === Product.id)) {
-          const foundCart = props.UserCarts.filter(cart => cart.user_id === props.User.id).find(item => item.product_id === Product.id);
           try {
-            await API.patch('/increase-order-quantity/' + foundCart.id);
+            await API.patch('/increase-order-quantity/' + Product.id);
           }
           catch (error) {
             return
           }
           const updatedCarts = props.UserCarts.map((cart) => {
-            if (cart.user_id === props.User.id && cart.id === foundCart.id) {
+            if (cart.user_id === props.User.id && cart.product_id === Product.id) {
               return { ...cart, order_quantity: cart.order_quantity + 1 };
             }
             return cart;
