@@ -94,17 +94,25 @@ func (h *handlerCart) DeleteCart(c echo.Context) error {
 }
 
 func (h *handlerCart) IncreaseOrderQuntity(c echo.Context) error {
-	id, _ := strconv.Atoi(c.Param("id"))
+	userLogin := c.Get("userLogin")
+	userId := userLogin.(jwt.MapClaims)["id"].(float64)
+	productId, _ := strconv.Atoi(c.Param("product_id"))
 
-	var cart models.Cart
-	cart, err := h.CartRepository.GetCart(id)
+	var carts []models.Cart
+	carts, err := h.CartRepository.FindCarts()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	cart.OrderQuantity += 1
+	var cartNew models.Cart
+	for _, cart := range carts {
+		if cart.UserID == int(userId) && cart.ProductID == productId {
+			cart.OrderQuantity += 1
+			cartNew = cart
+		}
+	}
 
-	newCart, err := h.CartRepository.UpdateCart(cart)
+	newCart, err := h.CartRepository.UpdateCart(cartNew)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
@@ -113,17 +121,25 @@ func (h *handlerCart) IncreaseOrderQuntity(c echo.Context) error {
 }
 
 func (h *handlerCart) DecreaseOrderQuntity(c echo.Context) error {
-	id, _ := strconv.Atoi(c.Param("id"))
+	userLogin := c.Get("userLogin")
+	userId := userLogin.(jwt.MapClaims)["id"].(float64)
+	productId, _ := strconv.Atoi(c.Param("product_id"))
 
-	var cart models.Cart
-	cart, err := h.CartRepository.GetCart(id)
+	var carts []models.Cart
+	carts, err := h.CartRepository.FindCarts()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	cart.OrderQuantity -= 1
+	var cartNew models.Cart
+	for _, cart := range carts {
+		if cart.UserID == int(userId) && cart.ProductID == productId {
+			cart.OrderQuantity -= 1
+			cartNew = cart
+		}
+	}
 
-	newCart, err := h.CartRepository.UpdateCart(cart)
+	newCart, err := h.CartRepository.UpdateCart(cartNew)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}

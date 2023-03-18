@@ -19,17 +19,17 @@ export default function ProductDetails(props) {
           const foundCart = props.UserCarts.filter(cart => cart.user_id === props.User.id).find(item => item.product_id === Product.id);
           try {
             await API.patch('/increase-order-quantity/' + foundCart.id);
-            const updatedCarts = props.UserCarts.map((cart) => {
-              if (cart.user_id === props.User.id && cart.id === foundCart.id) {
-                return { ...cart, order_quantity: cart.order_quantity + 1 };
-              }
-              return cart;
-            });
-            props.SetUserCarts(updatedCarts);
           }
           catch (error) {
             return
           }
+          const updatedCarts = props.UserCarts.map((cart) => {
+            if (cart.user_id === props.User.id && cart.id === foundCart.id) {
+              return { ...cart, order_quantity: cart.order_quantity + 1 };
+            }
+            return cart;
+          });
+          props.SetUserCarts(updatedCarts);
         }
         else {
           let newCart = {order_quantity:1};
@@ -40,18 +40,17 @@ export default function ProductDetails(props) {
             },
           };
           try {
-            const response = await API.post('/cart/' + Product.id, newCart, config);
-            const newCartData = {
-              id: response.id,
-              user_id: response.user_id,
-              product_id: response.product_id,
-              order_quantity: response.order_quantity,
-            }
-            props.SetUserCarts([...props.UserCarts, newCartData]);
+            await API.post('/cart/' + Product.id, newCart, config);
           }
           catch (error) {
             return
           }
+          const newCartData = {
+            user_id: props.User.id,
+            product_id: Product.id,
+            order_quantity: 1,
+          }
+          props.SetUserCarts([...props.UserCarts, newCartData]);
         }
         props.setmodalSuccessAddCart();
         navigate("/");
