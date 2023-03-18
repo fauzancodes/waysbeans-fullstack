@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useMutation } from 'react-query';
+import axios from 'axios';
 import { API } from '../config/api';
 
 import PaymentModal from '../components/PaymentModal';
