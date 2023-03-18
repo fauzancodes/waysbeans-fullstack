@@ -44,7 +44,7 @@ export default function ProductDetails(props) {
                       <ol className="ps-3">
                         {transaction.products.map((product, index) => (
                           <li className="mb-2" style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>
-                            {product.product_name}, Rp{product.product_price}, x{product.order_quantity}
+                            {product.product_name}, {product.product_price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}, x{product.order_quantity}
                           </li>
                         ))}
                       </ol>

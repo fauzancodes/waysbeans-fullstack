@@ -2,8 +2,6 @@ import { Container, Col, Row, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Home(props) {
-  document.title = "WaysBeans";
-
   let Products = [];
   if (props.Products !== undefined) {
     Products = [...props.Products];
@@ -33,7 +31,7 @@ function Home(props) {
                       <Card.Body>
                         <Card.Title className="product-title">{item.name}</Card.Title>
                         <Card.Text className="product-details">
-                          <div className="product-details">Rp{item.price}</div>
+                          <div className="product-details">{item.price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}</div>
                           <div className="product-details">Stock: {item.stock}</div>
                         </Card.Text>
                       </Card.Body>

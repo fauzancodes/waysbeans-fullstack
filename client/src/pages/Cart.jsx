@@ -336,7 +336,7 @@ export default function ProductDetails(props) {
                         </div>
                       </div>
                       <div>
-                        <div className="product-details font-size-18px mb-4">Rp{props.Products.find(product => product.id === item.product_id).price}</div>
+                        <div className="product-details font-size-18px mb-4">{props.Products.find(product => product.id === item.product_id).price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}</div>
                         <div className="text-end"><img src="/images/icon-delete.webp" alt="Delete Order" onClick={() => {setCartId(item.id);setModalDeleteCart(true)}} style={{ cursor:"pointer" }}/></div>
                       </div>
                     </div>
@@ -350,7 +350,7 @@ export default function ProductDetails(props) {
                 <Col xs={12} lg={4} className={`py-4 px-0 ms-2 animate__animated animate__slideInRight`} style={{ borderTop:"1px solid #613D2B", backgroundColor: props.darkMode ? "#F6E6DA" : "transparent" }}>
                   <div className={`d-flex justify-content-between mb-4 font-size-18px ${props.darkMode && "px-4"}`}>
                     <div className="product-details">Subtotal</div>
-                    <div className="product-details">Rp{props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0)}</div>
+                    <div className="product-details">{props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0).toLocaleString("id-ID", {style: "currency",currency: "IDR"})}</div>
                   </div>
                   <div className={`d-flex justify-content-between pb-4 font-size-18px ${props.darkMode && "px-4"}`} style={{ borderBottom:"1px solid #613D2B" }}>
                     <div className="product-details">Qty</div>
@@ -358,7 +358,7 @@ export default function ProductDetails(props) {
                   </div>
                   <div className={`d-flex justify-content-between mt-4 font-size-18px ${props.darkMode && "px-4"}`}>
                     <div className="product-details fw-bold">Total</div>
-                    <div className="product-details fw-bold">Rp{props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0)}</div>
+                    <div className="product-details fw-bold">{props.UserCarts.filter(cart => cart.user_id === props.User.id).reduce((accumulator, currentCart) => accumulator + (currentCart.order_quantity * props.Products.find(product => product.id === currentCart.product_id).price), 0).toLocaleString("id-ID", {style: "currency",currency: "IDR"})}</div>
                   </div>
                   <div className={`d-flex ${props.darkMode ? "justify-content-center" : "justify-content-end"} mt-5`}>
                     <Button variant="primary" onClick={() => setModalPaymentShow(true)} size="lg" className="custom-btn-primary fw-bold font-size-18px w-75">Pay</Button>

@@ -92,14 +92,14 @@ export default function Profile(props) {
                           item.products?.map((product, index) => (
                             <li className="product-title font-size-14px">
                               <span className="product-title font-size-14px text-nowrap">{product?.product_name}, </span>
-                              <span className="product-details fw-normal font-size-14px text-nowrap">Rp{product?.product_price}, x{product?.order_quantity}</span>
+                              <span className="product-details fw-normal font-size-14px text-nowrap">{product?.product_price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}, x{product?.order_quantity}</span>
                             </li>
                           ))
                         }
                         </ol>
-                        <p className="product-details font-size-14px mb-0">Price : Rp{item.total_price}</p>
+                        <p className="product-details font-size-14px mb-0">Price : {item.total_price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}</p>
                         <p className="product-details font-size-14px mb-0">Qty : {item.total_quantity}</p>
-                        <p className="product-details font-size-14px fw-bold mb-0">Sub Total : Rp{item.total_price}</p>
+                        <p className="product-details font-size-14px fw-bold mb-0">Sub Total : {item.total_price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}</p>
                       </div>
                     </Col>
                     <Col xs={12} lg={4} className="d-flex flex-column align-items-center transaction-status">
