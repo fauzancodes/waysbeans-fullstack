@@ -29,6 +29,12 @@ export default function Profile(props) {
   }
 
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  
+  let TransactionsSorted = [];
+  if (props.Transactions !== undefined) {
+    TransactionsSorted = [...props.Transactions];
+    TransactionsSorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
 
   return (
     <>
@@ -72,8 +78,8 @@ export default function Profile(props) {
           <Col xs={12} lg={6} className="animate__animated animate__slideInRight">
             <h2 className={`${props.darkMode ? "fw-bold text-light text-center" : "product-title"} mb-4 font-size-24px`} style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>My Transaction</h2>
             {
-              props.Transactions.filter(transaction => transaction.user?.id === props.User.id).length > 0 ? (
-                props.Transactions.filter(transaction => transaction.user?.id === props.User.id).map((item) => (
+              TransactionsSorted.filter(transaction => transaction.user?.id === props.User.id).length > 0 ? (
+                TransactionsSorted.filter(transaction => transaction.user?.id === props.User.id).map((item) => (
                   <Row key={item.id} className="justify-content-between align-items-center p-3 mb-4" style={{ backgroundColor:"#F6E6DA" }}>
                     <Col xs={12} className="d-flex flex-wrap justify-content-center align-items-center product-transaction mb-3">
                       {

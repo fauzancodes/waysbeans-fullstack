@@ -104,7 +104,7 @@ function App() {
   const [UserCarts, SetUserCarts] = useState([]);
   const [UserProfiles, SetUserProfiles] = useState([]);
   const [TransactionsList, SetTransactionsList] = useState([]);
-
+  
   useQuery('productsCache', async () => {
     try {
       const response = await API.get('/products');
@@ -113,7 +113,7 @@ function App() {
     catch (error) {
       return
     }
-  });
+  }, [ProductsList]);
   useQuery('usercartsCache', async () => {
     try {
       const response = await API.get('/carts');
@@ -122,7 +122,7 @@ function App() {
     catch (error) {
       return
     }
-  });
+  }, [UserCarts]);
   useQuery('userprofilesCache', async () => {
     try {
       const response = await API.get('/profiles');
@@ -131,7 +131,7 @@ function App() {
     catch (error) {
       return
     }
-  });
+  }, [UserProfiles]);
   useQuery('transactionsCache', async () => {
     try {
       const response = await API.get('/transactions');
@@ -140,7 +140,7 @@ function App() {
     catch (error) {
       return
     }
-  });
+  }, [TransactionsList]);
 
   const [formLogin, setFormLogin] = useState({
     email: "",

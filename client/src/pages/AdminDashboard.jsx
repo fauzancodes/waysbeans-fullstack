@@ -6,13 +6,13 @@ export default function ProductDetails(props) {
   let TransactionsSorted = [];
   if (props.Transactions !== undefined) {
     TransactionsSorted = [...props.Transactions];
-    TransactionsSorted.sort((a, b) => b.date - a.date);
+    TransactionsSorted.sort((a, b) => new Date(b.date) - new Date(a.date));
   }
 
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   return (
-    <Container>
+    <Container className="mb-5">
       <h1 className={`custom-margin-top ${props.darkMode ? "fw-bold text-light text-center" : "product-title"} font-size-36px mb-5`}style={{ backgroundColor: props.darkMode ? "#613D2B" : "transparent", padding: props.darkMode ? "1rem" : "0" }}>Income Transaction</h1>
       {
         TransactionsSorted.length > 0 ? (
