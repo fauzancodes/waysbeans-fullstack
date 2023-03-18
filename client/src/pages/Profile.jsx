@@ -78,7 +78,7 @@ export default function Profile(props) {
                     <Col xs={12} className="d-flex flex-wrap justify-content-center align-items-center product-transaction mb-3">
                       {
                         item.products?.map((product, index) => (
-                          <div className="d-flex flex-column align-items-center">
+                          <div key={index} className="d-flex flex-column align-items-center">
                             <img src={product?.product_photo} alt={product?.product_name} className="" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>
                           </div>
                         ))
@@ -90,7 +90,7 @@ export default function Profile(props) {
                         <ol className="ps-3">
                         {
                           item.products?.map((product, index) => (
-                            <li className="product-title font-size-14px">
+                            <li key={index} className="product-title font-size-14px">
                               <span className="product-title font-size-14px text-nowrap">{product?.product_name}, </span>
                               <span className="product-details fw-normal font-size-14px text-nowrap">{product?.product_price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}, x{product?.order_quantity}</span>
                             </li>

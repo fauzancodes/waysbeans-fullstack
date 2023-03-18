@@ -321,8 +321,8 @@ export default function ProductDetails(props) {
             <Col xs={12} lg={7}>
             {
               props.UserCarts.filter(cart => cart.user_id === props.User.id).length > 0 ? (
-                props.UserCarts.filter(cart => cart.user_id === props.User.id).map((item, index) => (
-                  <Col xs={12} className={`py-4 px-0 mb-4 animate__animated animate__slideInLeft`} style={{ borderTop:"1px solid #613D2B",borderBottom:"1px solid #613D2B", backgroundColor: props.darkMode ? "#F6E6DA" : "transparent" }}>
+                props.UserCarts.filter(cart => cart.user_id === props.User.id).map((item) => (
+                  <Col key={item.id} xs={12} className={`py-4 px-0 mb-4 animate__animated animate__slideInLeft`} style={{ borderTop:"1px solid #613D2B",borderBottom:"1px solid #613D2B", backgroundColor: props.darkMode ? "#F6E6DA" : "transparent" }}>
                     <div className={`d-flex justify-content-between align-items-center ${props.darkMode && "px-4"}`}>
                       <div className="d-flex flex-wrap align-items-center">
                         <img src={props.Products.find(product => product.id === item.product_id).photo} alt={props.Products.find(product => product.id === item.product_id).name} className="me-3" style={{ width:"7.5rem", height:"10rem", objectFit:"cover" }}/>

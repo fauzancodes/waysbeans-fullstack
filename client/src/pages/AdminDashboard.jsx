@@ -34,7 +34,7 @@ export default function ProductDetails(props) {
             <tbody>
               {
                 TransactionsSorted.map((transaction, index) => (
-                  <tr key={index}>
+                  <tr key={transaction.id}>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{index + 1}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.name}</td>
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>{transaction.email}</td>
@@ -43,7 +43,7 @@ export default function ProductDetails(props) {
                     <td style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>
                       <ol className="ps-3">
                         {transaction.products.map((product, index) => (
-                          <li className="mb-2" style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>
+                          <li key={index} className="mb-2" style={{ color: props.darkMode ? "#FFFFFF" : "#000000" }}>
                             {product.product_name}, {product.product_price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}, x{product.order_quantity}
                           </li>
                         ))}
