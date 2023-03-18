@@ -164,8 +164,8 @@ textarea {
     margin-left: auto !important;
     margin-right: auto !important;
   }
-  .product-transaction img, .product-transaction > div {
-    margin-bottom: 1rem;
+  .transaction-status {
+    margin-top: 1rem !important;
   }
   #product-photo-container, #payment-prove-container {
     width: 100% !important;

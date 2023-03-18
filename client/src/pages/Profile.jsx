@@ -75,12 +75,11 @@ export default function Profile(props) {
               props.Transactions.filter(transaction => transaction.user?.id === props.User.id).length > 0 ? (
                 props.Transactions.filter(transaction => transaction.user?.id === props.User.id).map((item) => (
                   <Row key={item.id} className="justify-content-between align-items-center p-3 mb-4" style={{ backgroundColor:"#F6E6DA" }}>
-                    <Col xs={12} className="d-flex flex-wrap justify-content-center align-items-center product-transaction">
+                    <Col xs={12} className="d-flex flex-wrap justify-content-center align-items-center product-transaction mb-3">
                       {
                         item.products?.map((product, index) => (
-                          <div className="d-flex flex-column align-items-center mx-2">
-                            <img src={product?.product_photo} alt={product?.product_name} className="mt-3" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>
-                            <h3 className="product-title font-size-16px mt-0 mb-3">{`${product?.product_name} x${product?.order_quantity}`}</h3>
+                          <div className="d-flex flex-column align-items-center">
+                            <img src={product?.product_photo} alt={product?.product_name} className="" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>
                           </div>
                         ))
                       }
@@ -88,12 +87,22 @@ export default function Profile(props) {
                     <Col xs={12} lg={8} className="d-flex flex-wrap justify-content-center align-items-center product-transaction">
                       <div className="w-100">
                         <p className="custom-text-primary font-size-14px"><strong className="custom-text-primary">{`${new Date(item.date).getDate()} ${months[new Date(item.date).getMonth()]} ${new Date(item.date).getFullYear()}`}</strong></p>
+                        <ol className="ps-3">
+                        {
+                          item.products?.map((product, index) => (
+                            <li className="product-title font-size-14px">
+                              <span className="product-title font-size-14px text-nowrap">{product?.product_name}, </span>
+                              <span className="product-details fw-normal font-size-14px text-nowrap">Rp{product?.product_price}, x{product?.order_quantity}</span>
+                            </li>
+                          ))
+                        }
+                        </ol>
                         <p className="product-details font-size-14px mb-0">Price : Rp{item.total_price}</p>
                         <p className="product-details font-size-14px mb-0">Qty : {item.total_quantity}</p>
                         <p className="product-details font-size-14px fw-bold mb-0">Sub Total : Rp{item.total_price}</p>
                       </div>
                     </Col>
-                    <Col xs={12} lg={4} className="d-flex flex-column align-items-center">
+                    <Col xs={12} lg={4} className="d-flex flex-column align-items-center transaction-status">
                       <img src="/images/icon-logo.webp" alt="Logo" style={{ width:"6rem" }}/>
                       <img src="/images/qr-code.webp" alt="QR Code" className="my-3" style={{ width:"4rem" }}/>
                       {
