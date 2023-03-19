@@ -263,7 +263,6 @@ export default function ProductDetails(props) {
       });
       props.SetUserCarts(updatedCarts);
     }
-    else setModalExceedStock(true);
   }
   const deleteCart = async (id) => {
     try {
