@@ -245,7 +245,7 @@ export default function ProductDetails(props) {
     else setModalExceedStock(true);
   }
   const decreaseQuantity = async (product_id) => {
-    if (props.UserCarts.find(cart => cart.product_id === product_id && cart.user_id === props.User.id).order_quantity < props.Products.find(product => product.id === props.UserCarts.find(cart => cart.product_id === product_id && cart.user_id === props.User.id).product_id).stock) {
+    if (props.UserCarts.find(cart => cart.product_id === product_id && cart.user_id === props.User.id).order_quantity > 1) {
       try {
         await API.patch('/decrease-order-quantity/' + product_id);
       }
