@@ -28,7 +28,7 @@ function Home(props) {
                 Products.map((item) => (
                   <Link to={`/product-details/${item.id}`} key={item.id} className="text-decoration-none mb-5">
                     <Card className="border-0 product-card rounded-0">
-                      <Card.Img variant="top" src={item.photo} alt={item.name} className="w-100 h-50" style={{ borderRadius:"0", objectFit:"cover" }} />
+                      <Card.Img variant="top" src={item.photo} alt={item.name} className="w-100" style={{ borderRadius:"0", objectFit:"cover", height:"18rem" }} />
                       <Card.Body>
                         <Card.Title className="product-title">{item.name}</Card.Title>
                         <Card.Text className="product-details">

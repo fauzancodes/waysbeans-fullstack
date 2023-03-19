@@ -59,7 +59,7 @@ function AddProductPage(props) {
           </Form>
         </Col>
         <Col xs={12} lg={5} className="mb-4 animate__animated animate__slideInRight">
-          <img src={props.imageUrl} alt="Product Preview" className="w-100 h-75" style={{ objectFit:"cover" }}/>
+          <img src={props.imageUrl} alt="Product Preview" className="w-100" style={{ objectFit:"cover", height:"32rem" }}/>
         </Col>
       </Row>
     </Container>
