@@ -264,15 +264,15 @@ export default function ProductDetails(props) {
       props.SetUserCarts(updatedCarts);
     }
   }
-  const deleteCart = async (id) => {
+  const deleteCart = async (product_id) => {
     try {
-      await API.delete('/cart/' + id);
+      await API.delete('/cart/' + product_id);
     }
     catch (error) {
       return
     }
     props.SetUserCarts((userCarts) => {
-      return userCarts.filter((item) => !(item.user_id === props.User.id && item.id === id));
+      return userCarts.filter((item) => !(item.user_id === props.User.id && item.product_id === product_id));
     });
     setModalDeleteCart(false);
     setModalSuccessDeleteCart(true);
@@ -281,7 +281,7 @@ export default function ProductDetails(props) {
   const [modalDeleteCart, setModalDeleteCart] = useState(false);
   const [modalSuccessDeleteCart, setModalSuccessDeleteCart] = useState(false);
   const [modalExceedStock, setModalExceedStock] = useState(false);
-  const [cartId, setCartId] = useState(0);
+  const [cartProductId, setCartProductId] = useState(0);
 
   return (
     <>
@@ -299,7 +299,7 @@ export default function ProductDetails(props) {
           <p className="font-size-24px text-center mb-4">Are you sure you want to delete this cart?</p>
           <div className="d-flex justify-content-around">
             <Button onClick={() => setModalDeleteCart(false)} variant="secondary">Cancel</Button>
-            <Button onClick={() => deleteCart(cartId)} variant="danger">Delete</Button>
+            <Button onClick={() => deleteCart(cartProductId)} variant="danger">Delete</Button>
           </div>
         </Modal.Body>
       </Modal>
@@ -337,7 +337,7 @@ export default function ProductDetails(props) {
                       </div>
                       <div>
                         <div className="product-details font-size-18px mb-4">{props.Products.find(product => product.id === item.product_id).price.toLocaleString("id-ID", {style: "currency",currency: "IDR"})}</div>
-                        <div className="text-end"><img src="/images/icon-delete.webp" alt="Delete Order" onClick={() => {setCartId(item.id);setModalDeleteCart(true)}} style={{ cursor:"pointer" }}/></div>
+                        <div className="text-end"><img src="/images/icon-delete.webp" alt="Delete Order" onClick={() => {setCartProductId(item.product_id);setModalDeleteCart(true)}} style={{ cursor:"pointer" }}/></div>
                       </div>
                     </div>
                   </Col>

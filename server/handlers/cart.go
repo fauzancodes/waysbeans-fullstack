@@ -78,19 +78,27 @@ func (h *handlerCart) CreateCart(c echo.Context) error {
 }
 
 func (h *handlerCart) DeleteCart(c echo.Context) error {
-	id, _ := strconv.Atoi(c.Param("id"))
-
-	cart, err := h.CartRepository.GetCart(id)
+	userLogin := c.Get("userLogin")
+	userId := userLogin.(jwt.MapClaims)["id"].(float64)
+	productId, _ := strconv.Atoi(c.Param("product_id"))
+	
+	carts, err := h.CartRepository.FindCarts()
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	data, err := h.CartRepository.DeleteCart(cart)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
+	var dataDeleted models.Cart
+	for _, cart := range carts {
+		if cart.UserID == int(userId) && cart.ProductID == productId {
+			data, err := h.CartRepository.DeleteCart(cart)
+			if err != nil {
+				return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
+			}
+			dataDeleted = data
+		}
 	}
 
-	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart data deleted successfully", Data: convertResponseCart(data)})
+	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart data deleted successfully", Data: convertResponseCart(dataDeleted)})
 }
 
 func (h *handlerCart) IncreaseOrderQuntity(c echo.Context) error {
@@ -98,7 +106,6 @@ func (h *handlerCart) IncreaseOrderQuntity(c echo.Context) error {
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 	productId, _ := strconv.Atoi(c.Param("product_id"))
 
-	var carts []models.Cart
 	carts, err := h.CartRepository.FindCarts()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -125,7 +132,6 @@ func (h *handlerCart) DecreaseOrderQuntity(c echo.Context) error {
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 	productId, _ := strconv.Atoi(c.Param("product_id"))
 
-	var carts []models.Cart
 	carts, err := h.CartRepository.FindCarts()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
