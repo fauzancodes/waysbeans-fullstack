@@ -101,7 +101,7 @@ func (h *handlerCart) DeleteCart(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart data deleted successfully", Data: convertResponseCart(dataDeleted)})
 }
 
-func (h *handlerCart) IncreaseOrderQuntity(c echo.Context) error {
+func (h *handlerCart) IncreaseOrderQauntity(c echo.Context) error {
 	userLogin := c.Get("userLogin")
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 	productId, _ := strconv.Atoi(c.Param("product_id"))
@@ -127,7 +127,7 @@ func (h *handlerCart) IncreaseOrderQuntity(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart order quantity successfully increased", Data: convertResponseCart(newCart)})
 }
 
-func (h *handlerCart) DecreaseOrderQuntity(c echo.Context) error {
+func (h *handlerCart) DecreaseOrderQauntity(c echo.Context) error {
 	userLogin := c.Get("userLogin")
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 	productId, _ := strconv.Atoi(c.Param("product_id"))
