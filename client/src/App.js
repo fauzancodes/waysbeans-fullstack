@@ -216,7 +216,7 @@ function App() {
       setModalRegisterShow(false);
       setmodalSuccessRegister(true);
     } catch (error) {
-      setModalRegisteredEmail(true);
+      if (error.response.data.message === "This email is already registered") setModalRegisteredEmail(true);
       setFormRegister({
         name: "",
         email: "",
