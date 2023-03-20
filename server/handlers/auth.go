@@ -62,7 +62,7 @@ func (h *handlerAuth) Register(c echo.Context) error {
 
 		return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Your registration is successful", Data: data})
 	} else {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: "This email is already registered"})
+		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: "This email is already registered"})
 	}
 }
 
