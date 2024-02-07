@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"waysbeans/database"
-	"waysbeans/pkg/mysql"
+	"waysbeans/pkg/postgresql"
 	"waysbeans/routes"
 
 	"github.com/joho/godotenv"
@@ -26,10 +26,10 @@ func main() {
 		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization"},
 	}))
 
-	mysql.DatabaseInit()
+	postgresql.DatabaseInit()
 	database.RunMigration()
 
-	routes.RouteInit(e.Group("/api/v1"))
+	routes.RouteInit(e.Group("/waysbeans-api/v1"))
 
 	e.Static("/uploads", "./uploads")
 

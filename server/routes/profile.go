@@ -3,14 +3,14 @@ package routes
 import (
 	"waysbeans/handlers"
 	"waysbeans/pkg/middleware"
-	"waysbeans/pkg/mysql"
+	"waysbeans/pkg/postgresql"
 	"waysbeans/repositories"
 
 	"github.com/labstack/echo/v4"
 )
 
 func ProfileRoutes(e *echo.Group) {
-	profileRepository := repositories.RepositoryProfile(mysql.DB)
+	profileRepository := repositories.RepositoryProfile(postgresql.DB)
 	h := handlers.HandlerProfile(profileRepository)
 
 	e.GET("/profiles", h.FindProfiles)

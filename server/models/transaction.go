@@ -20,7 +20,7 @@ type WaysBeansTransaction struct {
 
 type WaysBeansTransactionUSerResponse struct {
 	ID            int    `json:"id"`
-	UserID        int    `json:"-"`
+	UserID        int    `json:"-" gorm:"index"`
 	TotalQuantity int    `json:"total_quantity"`
 	TotalPrice    int    `json:"total_price"`
 	Status        string `json:"status" gorm:"type: varchar(255)"`

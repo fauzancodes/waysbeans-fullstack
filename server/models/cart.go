@@ -17,11 +17,11 @@ type WaysBeansCartUSerResponse struct {
 	ID            int `json:"id"`
 	ProductID     int `json:"product_id"`
 	OrderQuantity int `json:"order_quantity"`
-	UserID        int `json:"-"`
+	UserID        int `json:"-" gorm:"index"`
 }
 
 type WaysBeansCartProductResponse struct {
-	ProductID     int                          `json:"-"`
+	ProductID     int                          `json:"-" gorm:"index"`
 	Product       WaysBeansProductCartResponse `json:"product"`
 	OrderQuantity int                          `json:"order_quantity"`
 	UserID        int                          `json:"user_id"`

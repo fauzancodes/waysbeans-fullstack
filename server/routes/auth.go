@@ -3,15 +3,15 @@ package routes
 import (
 	"waysbeans/handlers"
 	"waysbeans/pkg/middleware"
-	"waysbeans/pkg/mysql"
+	"waysbeans/pkg/postgresql"
 	"waysbeans/repositories"
 
 	"github.com/labstack/echo/v4"
 )
 
 func AuthRoutes(e *echo.Group) {
-	authRepository := repositories.RepositoryAuth(mysql.DB)
-	profileRepository := repositories.RepositoryProfile(mysql.DB)
+	authRepository := repositories.RepositoryAuth(postgresql.DB)
+	profileRepository := repositories.RepositoryProfile(postgresql.DB)
 	h := handlers.HandlerAuth(authRepository, profileRepository)
 
 	e.POST("/register", h.Register)

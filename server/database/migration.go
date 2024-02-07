@@ -3,11 +3,11 @@ package database
 import (
 	"fmt"
 	"waysbeans/models"
-	"waysbeans/pkg/mysql"
+	postgresql "waysbeans/pkg/postgresql"
 )
 
 func RunMigration() {
-	err := mysql.DB.AutoMigrate(
+	err := postgresql.DB.AutoMigrate(
 		&models.WaysBeansUser{},
 		&models.WaysBeansProfile{},
 		&models.WaysBeansProduct{},
@@ -18,7 +18,6 @@ func RunMigration() {
 
 	if err != nil {
 		fmt.Println(err)
-		panic("Migration Failed")
 	}
 
 	fmt.Println("Migration Success")

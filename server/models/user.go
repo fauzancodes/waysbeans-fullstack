@@ -8,15 +8,16 @@ type WaysBeansUser struct {
 	Name        string                             `json:"name" gorm:"type: varchar(255)"`
 	Email       string                             `json:"email" gorm:"type: varchar(255)"`
 	Password    string                             `json:"-" gorm:"type: varchar(255)"`
-	Profile     WaysBeansProfileResponse           `json:"profile"`
-	Cart        []WaysBeansCartUSerResponse        `json:"cart"`
-	Transaction []WaysBeansTransactionUSerResponse `json:"transaction"`
+	Profile     WaysBeansProfileResponse           `json:"profile" gorm:"foreignkey:UserID"`
+	Cart        []WaysBeansCartUSerResponse        `json:"cart" gorm:"foreignkey:UserID"`
+	Transaction []WaysBeansTransactionUSerResponse `json:"transaction" gorm:"foreignkey:UserID"`
 	CreatedAt   time.Time                          `json:"-"`
 	UpdatedAt   time.Time                          `json:"-"`
 }
 
 type WaysBeansUsersProfileResponse struct {
 	ID      int    `json:"id"`
+	UserID  int    `json:"user_id" gorm:"index"`
 	IsAdmin bool   `json:"is_admin"`
 	Name    string `json:"name"`
 }

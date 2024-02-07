@@ -9,7 +9,7 @@ type WaysBeansProduct struct {
 	Price       int                            `json:"price" form:"price" gorm:"type: int"`
 	Photo       string                         `json:"photo" form:"photo" gorm:"type: varchar(255)"`
 	Stock       int                            `json:"stock" form:"stock" gorm:"type: int"`
-	Cart        []WaysBeansCartProductResponse `json:"cart"`
+	Cart        []WaysBeansCartProductResponse `json:"cart" gorm:"foreignkey:ProductID"`
 	CreatedAt   time.Time                      `json:"-"`
 	UpdatedAt   time.Time                      `json:"-"`
 }

@@ -3,14 +3,14 @@ package routes
 import (
 	"waysbeans/handlers"
 	"waysbeans/pkg/middleware"
-	"waysbeans/pkg/mysql"
+	"waysbeans/pkg/postgresql"
 	"waysbeans/repositories"
 
 	"github.com/labstack/echo/v4"
 )
 
 func CartRoutes(e *echo.Group) {
-	cartRepository := repositories.RepositoryCart(mysql.DB)
+	cartRepository := repositories.RepositoryCart(postgresql.DB)
 	h := handlers.HandlerCart(cartRepository)
 
 	e.GET("/carts", h.FindCarts)
