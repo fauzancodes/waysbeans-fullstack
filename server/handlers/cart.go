@@ -63,7 +63,7 @@ func (h *handlerCart) CreateCart(c echo.Context) error {
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 	productId, _ := strconv.Atoi(c.Param("product_id"))
 
-	cart := models.Cart{
+	cart := models.WaysBeansCart{
 		ProductID:     productId,
 		OrderQuantity: request.OrderQuantity,
 		UserID:        int(userId),
@@ -81,13 +81,13 @@ func (h *handlerCart) DeleteCart(c echo.Context) error {
 	userLogin := c.Get("userLogin")
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 	productId, _ := strconv.Atoi(c.Param("product_id"))
-	
+
 	carts, err := h.CartRepository.FindCarts()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	var dataDeleted models.Cart
+	var dataDeleted models.WaysBeansCart
 	for _, cart := range carts {
 		if cart.UserID == int(userId) && cart.ProductID == productId {
 			data, err := h.CartRepository.DeleteCart(cart)
@@ -111,7 +111,7 @@ func (h *handlerCart) IncreaseOrderQauntity(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	var cartNew models.Cart
+	var cartNew models.WaysBeansCart
 	for _, cart := range carts {
 		if cart.UserID == int(userId) && cart.ProductID == productId {
 			cart.OrderQuantity += 1
@@ -137,7 +137,7 @@ func (h *handlerCart) DecreaseOrderQauntity(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	var cartNew models.Cart
+	var cartNew models.WaysBeansCart
 	for _, cart := range carts {
 		if cart.UserID == int(userId) && cart.ProductID == productId {
 			cart.OrderQuantity -= 1
@@ -153,7 +153,7 @@ func (h *handlerCart) DecreaseOrderQauntity(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Cart order quantity successfully increased", Data: convertResponseCart(newCart)})
 }
 
-func convertResponseCart(u models.Cart) cartsdto.CartResponse {
+func convertResponseCart(u models.WaysBeansCart) cartsdto.CartResponse {
 	return cartsdto.CartResponse{
 		ID:            u.ID,
 		ProductID:     u.ProductID,

@@ -1,6 +1,6 @@
 package models
 
-type ProductTransaction struct {
+type WaysBeansProductTransaction struct {
 	ID            int    `json:"id" gorm:"primary_key:auto_increment"`
 	ProductID     int    `json:"product_id"`
 	ProductName   string `json:"product_name" gorm:"type: varchar(255)"`

@@ -8,12 +8,12 @@ import (
 
 func RunMigration() {
 	err := mysql.DB.AutoMigrate(
-		&models.User{},
-		&models.Profile{},
-		&models.Product{},
-		&models.Cart{},
-		&models.Transaction{},
-		&models.ProductTransaction{},
+		&models.WaysBeansUser{},
+		&models.WaysBeansProfile{},
+		&models.WaysBeansProduct{},
+		&models.WaysBeansCart{},
+		&models.WaysBeansTransaction{},
+		&models.WaysBeansProductTransaction{},
 	)
 
 	if err != nil {

@@ -94,18 +94,18 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		totalPrice += multiplied
 	}
 
-	var userTransaction models.UserTransactionResponse
+	var userTransaction models.WaysBeansUserTransactionResponse
 	userTransaction.ID = user.ID
 	userTransaction.Name = user.Name
 	userTransaction.Email = user.Email
 
-	var productTransaction []models.ProductTransaction
+	var productTransaction []models.WaysBeansProductTransaction
 	for _, cart := range userCart {
 		product, err := h.ProductRepository.GetProduct(cart.ProductID)
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 		}
-		var cartNew models.ProductTransaction
+		var cartNew models.WaysBeansProductTransaction
 		cartNew.ProductID = product.ID
 		cartNew.ProductName = product.Name
 		cartNew.ProductPhoto = product.Photo
@@ -124,7 +124,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		}
 	}
 
-	transaction := models.Transaction{
+	transaction := models.WaysBeansTransaction{
 		ID:                 transactionId,
 		UserID:             int(userId),
 		User:               userTransaction,
@@ -197,7 +197,7 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 					if err != nil {
 						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 					}
-		
+
 					_, err = h.CartRepository.DeleteCart(cartToDelete)
 					if err != nil {
 						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -208,7 +208,7 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 		} else if fraudStatus == "accept" {
 			SendMail("success", transaction)
 			h.TransactionRepository.UpdateTransaction("success", order_id)
-			
+
 			carts, err := h.CartRepository.FindCarts()
 			if err != nil {
 				return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -219,7 +219,7 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 					if err != nil {
 						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 					}
-		
+
 					_, err = h.CartRepository.DeleteCart(cartToDelete)
 					if err != nil {
 						return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -230,7 +230,7 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 	} else if transactionStatus == "settlement" {
 		SendMail("success", transaction)
 		h.TransactionRepository.UpdateTransaction("success", order_id)
-		
+
 		carts, err := h.CartRepository.FindCarts()
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -241,7 +241,7 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 				if err != nil {
 					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 				}
-	
+
 				_, err = h.CartRepository.DeleteCart(cartToDelete)
 				if err != nil {
 					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -254,7 +254,7 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 		h.TransactionRepository.UpdateTransaction("failed", order_id)
 	} else if transactionStatus == "pending" {
 		h.TransactionRepository.UpdateTransaction("pending", order_id)
-		
+
 		carts, err := h.CartRepository.FindCarts()
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -265,7 +265,7 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 				if err != nil {
 					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 				}
-	
+
 				_, err = h.CartRepository.DeleteCart(cartToDelete)
 				if err != nil {
 					return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -277,27 +277,27 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: notificationPayload})
 }
 
-func SendMail(status string, transaction models.Transaction) {
+func SendMail(status string, transaction models.WaysBeansTransaction) {
 
-  if status != transaction.Status && (status == "success") {
-    var CONFIG_SMTP_HOST = "smtp.gmail.com"
-    var CONFIG_SMTP_PORT = 587
-    var CONFIG_SENDER_NAME = "Waysbeans <waysbeans.admin@gmail.com>"
-    var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
-    var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
+	if status != transaction.Status && (status == "success") {
+		var CONFIG_SMTP_HOST = "smtp.gmail.com"
+		var CONFIG_SMTP_PORT = 587
+		var CONFIG_SENDER_NAME = "Waysbeans <waysbeans.admin@gmail.com>"
+		var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
+		var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
 
 		var productsTransaction string
 		for index, product := range transaction.ProductTransaction {
-			productsTransaction += "(" + strconv.Itoa(index + 1) + ") " + product.ProductName + ", Rp" + strconv.Itoa(product.ProductPrice) + ", x" + strconv.Itoa(product.OrderQuantity) + "<br/>"
+			productsTransaction += "(" + strconv.Itoa(index+1) + ") " + product.ProductName + ", Rp" + strconv.Itoa(product.ProductPrice) + ", x" + strconv.Itoa(product.OrderQuantity) + "<br/>"
 		}
-    var totalQuantity = strconv.Itoa(transaction.TotalQuantity)
-    var totalPrice = strconv.Itoa(transaction.TotalPrice)
+		var totalQuantity = strconv.Itoa(transaction.TotalQuantity)
+		var totalPrice = strconv.Itoa(transaction.TotalPrice)
 
-    mailer := gomail.NewMessage()
-    mailer.SetHeader("From", CONFIG_SENDER_NAME)
-    mailer.SetHeader("To", "mfauzan.murtadho@gmail.com")
-    mailer.SetHeader("Subject", "Transaction Status")
-    mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
+		mailer := gomail.NewMessage()
+		mailer.SetHeader("From", CONFIG_SENDER_NAME)
+		mailer.SetHeader("To", "mfauzan.murtadho@gmail.com")
+		mailer.SetHeader("Subject", "Transaction Status")
+		mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
     <html lang="en">
       <head>
       <meta charset="UTF-8" />
@@ -323,18 +323,18 @@ func SendMail(status string, transaction models.Transaction) {
       </body>
     </html>`, transaction.Name, transaction.Email, transaction.Phone, transaction.Address, productsTransaction, totalQuantity, totalPrice, status))
 
-    dialer := gomail.NewDialer(
-      CONFIG_SMTP_HOST,
-      CONFIG_SMTP_PORT,
-      CONFIG_AUTH_EMAIL,
-      CONFIG_AUTH_PASSWORD,
-    )
+		dialer := gomail.NewDialer(
+			CONFIG_SMTP_HOST,
+			CONFIG_SMTP_PORT,
+			CONFIG_AUTH_EMAIL,
+			CONFIG_AUTH_PASSWORD,
+		)
 
-    err := dialer.DialAndSend(mailer)
-    if err != nil {
-      log.Fatal(err.Error())
-    }
+		err := dialer.DialAndSend(mailer)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 
-    log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
-  }
+		log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
+	}
 }

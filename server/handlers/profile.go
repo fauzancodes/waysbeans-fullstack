@@ -39,7 +39,7 @@ func (h *handlerProfile) FindProfiles(c echo.Context) error {
 func (h *handlerProfile) GetProfile(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	var profile models.Profile
+	var profile models.WaysBeansProfile
 	profile, err := h.ProfileRepository.GetProfile(id)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -92,7 +92,7 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Profile data updated successfully", Data: convertResponseProfile(data)})
 }
 
-func convertResponseProfile(u models.Profile) profiledto.ProfileResponse {
+func convertResponseProfile(u models.WaysBeansProfile) profiledto.ProfileResponse {
 	return profiledto.ProfileResponse{
 		ID:      u.ID,
 		Photo:   u.Photo,

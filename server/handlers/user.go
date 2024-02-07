@@ -164,7 +164,7 @@ func (h *handler) DeleteUser(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "User data deleted successfully", Data: convertResponse(data)})
 }
 
-func convertResponse(u models.User) usersdto.UserResponse {
+func convertResponse(u models.WaysBeansUser) usersdto.UserResponse {
 	return usersdto.UserResponse{
 		ID:    u.ID,
 		Name:  u.Name,

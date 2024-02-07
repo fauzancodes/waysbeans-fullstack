@@ -48,7 +48,7 @@ func (h *handlerProduct) FindProducts(c echo.Context) error {
 func (h *handlerProduct) GetProduct(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	var product models.Product
+	var product models.WaysBeansProduct
 	product, err := h.ProductRepository.GetProduct(id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -91,7 +91,7 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: resp.Error.Message})
 		}
 
-		product := models.Product{
+		product := models.WaysBeansProduct{
 			Name:        request.Name,
 			Description: request.Description,
 			Price:       request.Price,
@@ -202,7 +202,7 @@ func (h *handlerProduct) UpdateProduct(c echo.Context) error {
 func (h *handlerProduct) IncreaseStock(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	var product models.Product
+	var product models.WaysBeansProduct
 	product, err := h.ProductRepository.GetProduct(id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -221,7 +221,7 @@ func (h *handlerProduct) IncreaseStock(c echo.Context) error {
 func (h *handlerProduct) DecreaseStock(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	var product models.Product
+	var product models.WaysBeansProduct
 	product, err := h.ProductRepository.GetProduct(id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -237,7 +237,7 @@ func (h *handlerProduct) DecreaseStock(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Product stock successfully decreased", Data: convertResponseProduct(newProduct)})
 }
 
-func convertResponseProduct(u models.Product) productdto.ProductResponse {
+func convertResponseProduct(u models.WaysBeansProduct) productdto.ProductResponse {
 	return productdto.ProductResponse{
 		ID:          u.ID,
 		Name:        u.Name,
@@ -248,7 +248,7 @@ func convertResponseProduct(u models.Product) productdto.ProductResponse {
 	}
 }
 
-func convertResponseProducts(products []models.Product) []productdto.ProductResponse {
+func convertResponseProducts(products []models.WaysBeansProduct) []productdto.ProductResponse {
 	var responseProducts []productdto.ProductResponse
 
 	for _, product := range products {

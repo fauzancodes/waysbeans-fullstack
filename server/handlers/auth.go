@@ -46,7 +46,7 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	user := models.User{
+	user := models.WaysBeansUser{
 		IsAdmin:  request.IsAdmin,
 		Name:     request.Name,
 		Email:    request.Email,
@@ -72,7 +72,7 @@ func (h *handlerAuth) Login(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	user := models.User{
+	user := models.WaysBeansUser{
 		IsAdmin:  request.IsAdmin,
 		Email:    request.Email,
 		Password: request.Password,
@@ -101,7 +101,7 @@ func (h *handlerAuth) Login(c echo.Context) error {
 
 	_, err = h.ProfileRepository.GetProfile(user.ID)
 	if err != nil {
-		profile := models.Profile{
+		profile := models.WaysBeansProfile{
 			ID:      user.ID,
 			Photo:   "",
 			Phone:   "",
