@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"os"
 	profiledto "waysbeans/dto/profile"
 	dto "waysbeans/dto/result"
 	"waysbeans/models"
@@ -60,7 +61,7 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 		Address: c.FormValue("address"),
 	}
 
-	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+	cld, _ := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("API_KEY"), os.Getenv("API_SECRET"))
 	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
 	if err != nil {
 		fmt.Println(err.Error())
