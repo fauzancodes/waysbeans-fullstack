@@ -20,9 +20,10 @@ import (
 )
 
 var ctx = context.Background()
-var CLOUD_NAME = os.Getenv("CLOUD_NAME")
-var API_KEY = os.Getenv("API_KEY")
-var API_SECRET = os.Getenv("API_SECRET")
+
+// var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+// var API_KEY = os.Getenv("API_KEY")
+// var API_SECRET = os.Getenv("API_SECRET")
 
 type handlerProduct struct {
 	ProductRepository repositories.ProductRepository
@@ -81,7 +82,7 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 			return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: err.Error()})
 		}
 
-		cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+		cld, _ := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("API_KEY"), os.Getenv("API_SECRET"))
 		resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
 		if err != nil {
 			fmt.Println(err.Error())
@@ -166,7 +167,7 @@ func (h *handlerProduct) UpdateProduct(c echo.Context) error {
 			return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 		}
 
-		cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+		cld, _ := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("API_KEY"), os.Getenv("API_SECRET"))
 		resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
 		if err != nil {
 			fmt.Println(err.Error())
