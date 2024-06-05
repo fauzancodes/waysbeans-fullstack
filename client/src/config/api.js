@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const API = axios.create({
-  baseURL: "https://fauzancodes.site/waysbeans/api/v1/",
+  baseURL: "https://api-waysbeans.vercel.app/api/v1/",
 });
 
 export const setAuthToken = (token) => {
