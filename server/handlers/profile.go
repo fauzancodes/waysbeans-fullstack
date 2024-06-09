@@ -1,8 +1,6 @@
 package handlers
 
 import (
-	"fmt"
-	"os"
 	profiledto "waysbeans/dto/profile"
 	dto "waysbeans/dto/result"
 	"waysbeans/models"
@@ -11,8 +9,6 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/cloudinary/cloudinary-go/v2"
-	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/labstack/echo/v4"
 )
 
@@ -50,22 +46,22 @@ func (h *handlerProfile) GetProfile(c echo.Context) error {
 }
 
 func (h *handlerProfile) UpdateProfile(c echo.Context) error {
-	filepath := c.Get("dataFile").(string)
-	fmt.Println("this is data file", filepath)
+	// filepath := c.Get("dataFile").(string)
+	// fmt.Println("this is data file", filepath)
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	request := profiledto.ProfileRequest{
-		ID:      id,
-		Photo:   filepath,
+		ID: id,
+		// Photo:   filepath,
 		Phone:   c.FormValue("phone"),
 		Address: c.FormValue("address"),
 	}
 
-	cld, _ := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("API_KEY"), os.Getenv("API_SECRET"))
-	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	// cld, _ := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("API_KEY"), os.Getenv("API_SECRET"))
+	// resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// }
 
 	user, err := h.ProfileRepository.GetProfile(id)
 
@@ -76,7 +72,7 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 	user.ID = request.ID
 
 	if request.Photo != "" {
-		user.Photo = resp.SecureURL
+		user.Photo = c.Get("cloudinarySecureURL").(string)
 	}
 	if request.Phone != "" {
 		user.Phone = request.Phone
