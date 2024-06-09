@@ -2,24 +2,34 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 	"waysbeans/database"
 	"waysbeans/pkg/postgresql"
 	"waysbeans/routes"
 
-	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
-	errEnv := godotenv.Load()
-	if errEnv != nil {
-		panic("Failed to load env file")
-	}
+	e := Start()
 
+	var port = os.Getenv("PORT")
+
+	fmt.Println("server running localhost:" + port)
+	e.Logger.Fatal(e.Start(":" + port))
+}
+
+func Main(w http.ResponseWriter, r *http.Request) {
+	e := Start()
+
+	e.ServeHTTP(w, r)
+}
+
+func Start() *echo.Echo {
 	e := echo.New()
-
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.POST, echo.PATCH, echo.DELETE},
@@ -33,8 +43,5 @@ func main() {
 
 	e.Static("/uploads", "./uploads")
 
-	var port = os.Getenv("PORT")
-
-	fmt.Println("server running localhost:" + port)
-	e.Logger.Fatal(e.Start(":" + port))
+	return e
 }
