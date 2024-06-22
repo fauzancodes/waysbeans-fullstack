@@ -1,4 +1,5 @@
-package handler
+package main //for local
+// package handler //for vercel
 
 import (
 	"fmt"

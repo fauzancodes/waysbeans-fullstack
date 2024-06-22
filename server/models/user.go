@@ -17,7 +17,7 @@ type WaysBeansUser struct {
 
 type WaysBeansUsersProfileResponse struct {
 	ID      int    `json:"id"`
-	UserID  int    `json:"user_id" gorm:"index"`
+	UserID  int    `json:"user_id" gorm:"-"`
 	IsAdmin bool   `json:"is_admin"`
 	Name    string `json:"name"`
 }

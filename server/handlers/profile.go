@@ -46,16 +46,17 @@ func (h *handlerProfile) GetProfile(c echo.Context) error {
 }
 
 func (h *handlerProfile) UpdateProfile(c echo.Context) error {
-	// filepath := c.Get("dataFile").(string)
-	// fmt.Println("this is data file", filepath)
+	filepath := c.Get("cloudinarySecureURL").(string)
+	// fmt.Println("this is data file:", filepath)
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	request := profiledto.ProfileRequest{
-		ID: id,
-		// Photo:   filepath,
+		ID:      id,
+		Photo:   filepath,
 		Phone:   c.FormValue("phone"),
 		Address: c.FormValue("address"),
 	}
+	// fmt.Println("request.Photo:", request.Photo)
 
 	// cld, _ := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("API_KEY"), os.Getenv("API_SECRET"))
 	// resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "waysbeans"})
@@ -72,7 +73,7 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 	user.ID = request.ID
 
 	if request.Photo != "" {
-		user.Photo = c.Get("cloudinarySecureURL").(string)
+		user.Photo = request.Photo
 	}
 	if request.Phone != "" {
 		user.Phone = request.Phone

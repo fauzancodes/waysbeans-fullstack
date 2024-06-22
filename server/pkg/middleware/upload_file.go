@@ -62,6 +62,7 @@ func UploadFile(next echo.HandlerFunc) echo.HandlerFunc {
 			if err != nil {
 				fmt.Println(err.Error())
 			}
+			// fmt.Println("resp.SecureURL:", resp.SecureURL)
 
 			if resp.SecureURL == "" {
 				return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Status: http.StatusInternalServerError, Message: resp.Error.Message})

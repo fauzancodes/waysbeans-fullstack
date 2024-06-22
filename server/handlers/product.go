@@ -57,7 +57,7 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 	userLogin := c.Get("userLogin")
 	userAdmin := userLogin.(jwt.MapClaims)["is_admin"].(bool)
 	if userAdmin {
-		// filepath := c.Get("dataFile").(string)
+		filepath := c.Get("cloudinarySecureURL").(string)
 		// fmt.Println("this is data file", filepath)
 
 		price, _ := strconv.Atoi(c.FormValue("price"))
@@ -67,8 +67,8 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 			Name:        c.FormValue("name"),
 			Description: c.FormValue("description"),
 			Price:       price,
-			// Photo:       filepath,
-			Stock: stock,
+			Photo:       filepath,
+			Stock:       stock,
 		}
 
 		validation := validator.New()
@@ -91,7 +91,7 @@ func (h *handlerProduct) CreateProduct(c echo.Context) error {
 			Name:        request.Name,
 			Description: request.Description,
 			Price:       request.Price,
-			Photo:       c.Get("cloudinarySecureURL").(string),
+			Photo:       request.Photo,
 			Stock:       request.Stock,
 		}
 
@@ -143,7 +143,7 @@ func (h *handlerProduct) UpdateProduct(c echo.Context) error {
 			return c.JSON(http.StatusBadRequest, err)
 		}
 
-		filepath := c.Get("dataFile").(string)
+		filepath := c.Get("cloudinarySecureURL").(string)
 		fmt.Println("this is data file", filepath)
 
 		price, _ := strconv.Atoi(c.FormValue("price"))
@@ -178,7 +178,7 @@ func (h *handlerProduct) UpdateProduct(c echo.Context) error {
 			product.Price = request.Price
 		}
 		if request.Photo != "" {
-			product.Photo = c.Get("cloudinarySecureURL").(string)
+			product.Photo = request.Photo
 		}
 		if request.Stock != 0 {
 			product.Stock = request.Stock
